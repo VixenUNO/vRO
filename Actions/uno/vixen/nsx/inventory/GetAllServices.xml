@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetAllServices" result-type="Array/string" api-version="6.0.0" id="0142518c-f5bf-4039-967c-95a113a28f6e" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+  <param n="restHost" t="REST:RESTHost"/>
+  <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/services";
+var requestType = "GET";
+var requestContent = "";
+var requestContentType = "application/json";
+
+System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+// System.log("request: " + request.fullUrl);
+var response = request.execute();
+// System.log("response: " + response.contentAsString);
+var str = JSON.parse(response.contentAsString);
+var numofelements = str.result_count;
+var countto = numofelements - 1; 
+// System.log("Count To" + countto);
+// System.log("tz" + str.results[1].display_name);
+// System.log("str" + JSON.stringify(str));
+
+var result = Array();
+
+for (i = 0; i <= countto; i++) {
+
+    result.push(str.results[i].display_name);
+
+}
+
+return result;]]></script>
+</dunes-script-module>

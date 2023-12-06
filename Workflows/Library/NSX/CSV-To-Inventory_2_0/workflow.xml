@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="cd07cc35-3693-4e07-a3f8-7fe32c6b700a" editor-version="2.0" version="0.0.0" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+    <display-name>CSV-To-Inventory_2_0</display-name>
+    <position y="-3.0" x="121.1764705882353"/>
+    <input>
+        <param name="CSV" type="MimeAttachment"/>
+    </input>
+    <output>
+        <param name="actionResult" type="string"/>
+    </output>
+    <attrib name="parsedjson" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="arrayfromjson" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="currentelementnumber" type="number">
+        <value encoded="n">0.0</value>
+    </attrib>
+    <attrib name="totalnumberofelements" type="number">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="inventorytype" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="AllServices" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="restHost" type="REST:RESTHost">
+        <value encoded="n">dunes://service.dunes.ch/CustomSDKObject?id='5f1cdc0b-51c7-4bf8-972a-608584e7beb6'&amp;dunesName='REST:RESTHost'</value>
+    </attrib>
+    <attrib name="AllGroups" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="Type" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Name_Parent_group" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Value_Child_element" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Description" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="revision" type="string">
+        <value encoded="n"></value>
+        <description></description>
+    </attrib>
+    <attrib name="Host" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="Group" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="Service" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="ServiceGroup" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="SubGroup" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="iteration" type="number">
+        <value encoded="n">0.0</value>
+    </attrib>
+    <workflow-item name="item1" out-name="item6" type="task" script-module="uno.vixen.nsx.inventory/ParseCSVTemplateToJSON" comparator="0">
+        <display-name>ParseCSVTemplateToJSON</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx.inventory").ParseCSVTemplateToJSON(CSV);
+</script>
+        <in-binding>
+            <bind name="CSV" type="MimeAttachment" export-name="CSV">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/Properties" export-name="arrayfromjson"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item6" out-name="item15" type="task" comparator="0">
+        <display-name>Get Total Number of Elements</display-name>
+        <script encoded="false">totalnumberofelements = arrayfromjson.length;</script>
+        <in-binding>
+            <bind name="arrayfromjson" type="Array/Properties" export-name="arrayfromjson"/>
+        </in-binding>
+        <out-binding>
+            <bind name="totalnumberofelements" type="number" export-name="totalnumberofelements"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="118.8235294117647" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item15" out-name="item16" type="task" script-module="uno.vixen.nsx.inventory/GetAllServices" comparator="0">
+        <display-name>GetAllServices</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx.inventory").GetAllServices(restHost);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/string" export-name="AllServices"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="177.6470588235294" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item16" out-name="item17" type="task" script-module="uno.vixen.nsx.inventory/GetAllGroups" comparator="0">
+        <display-name>GetAllGroups</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx.inventory").GetAllGroups(restHost);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/string" export-name="AllGroups"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="228.18629557583336" x="79.6916089549336"/>
+    </workflow-item>
+    <workflow-item name="item17" out-name="item20" type="task" comparator="0">
+        <display-name>Parse Types to arrays</display-name>
+        <script encoded="false">Group = Array();
+Host = Array();
+Service = Array();
+ServiceGroup = Array();
+SubGroup = Array();
+
+
+for (i = 0; i &lt; arrayfromjson.length; i++) {
+
+    System.log(arrayfromjson[i].Type);
+
+    if(arrayfromjson[i].Type == "Host"){
+        Host[Host.length] = arrayfromjson[i];
+        System.log("1");
+    } else {
+        if (arrayfromjson[i].Type == "Group") {
+            Group[Group.length] = arrayfromjson[i];
+            System.log("2");
+        } else {
+            if (arrayfromjson[i].Type == "Service") {
+                Service[Service.length] = arrayfromjson[i];
+                System.log("3");
+            } else {
+                if (arrayfromjson[i].Type == "ServiceGroup") {
+                    ServiceGroup[ServiceGroup.length] = arrayfromjson[i];
+                    System.log("4");
+                } else {
+                    if (arrayfromjson[i].Type == "SubGroup") {
+                        SubGroup[SubGroup.length] = arrayfromjson[i];
+                        System.log("5");
+                    }
+                }
+            }
+        }
+    };
+}</script>
+        <in-binding>
+            <bind name="arrayfromjson" type="Array/Properties" export-name="arrayfromjson"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="280.0" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item18" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="80.0" x="360.0"/>
+    </workflow-item>
+    <workflow-item name="item19" type="end" end-mode="0" comparator="0">
+        <position y="0.0" x="680.0"/>
+    </workflow-item>
+    <workflow-item name="item20" out-name="item18" alt-out-name="item21" type="custom-condition" comparator="0">
+        <display-name>Create Host Groups?</display-name>
+        <script encoded="false">if(iteration&lt;Host.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="320.0"/>
+    </workflow-item>
+    <workflow-item name="item21" out-name="item19" type="task" comparator="0">
+        <display-name>Reset Iteration number</display-name>
+        <script encoded="false">iteration=0;</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="460.0"/>
+    </workflow-item>
+</ns2:workflow>

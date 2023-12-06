@@ -1,0 +1,1 @@
+{"layout":{"pages":[{"id":"page_g78qf0qr","sections":[{"id":"section_1kfmyzky","fields":[{"id":"CSV","display":"fileUpload","signpostPosition":"right-middle","state":{"visible":true,"read-only":false}}]}],"title":"General"}]},"schema":{"CSV":{"id":"CSV","type":{"dataType":"file"},"label":"CSV","constraints":{"required":false}}},"options":{"externalValidations":[]},"itemId":""}

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetSegmentDiscoveryProfileBindingMapsID" result-type="string" api-version="6.0.0" id="00cc6ca6-adb4-4d03-858e-8317e23d68f2" version="0.0.0" category-name="uno.vixen.nsx">
+  <param n="SegmentName" t="string"><![CDATA[]]></param>
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/segments/" + SegmentName + "/segment-discovery-profile-binding-maps";
+var requestType = "GET";
+var requestContent = "";
+var requestContentType = "application/json";
+
+System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+// System.log("request: " + request.fullUrl);
+var response = request.execute();
+// System.log("response: " + response.contentAsString);
+var str = JSON.parse(response.contentAsString);
+var numofelements = str.result_count;
+var countto = numofelements - 1; 
+// System.log("Count To" + countto);
+// System.log("tz" + str.results[1].display_name);
+// System.log("str" + JSON.stringify(str));
+
+        tzid = str.results[0].id;
+
+return tzid;]]></script>
+</dunes-script-module>

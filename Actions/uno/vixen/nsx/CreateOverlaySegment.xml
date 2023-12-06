@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="CreateOverlaySegment" result-type="string" api-version="6.0.0" id="39d126b4-de28-46ef-bd0e-07599d096ae8" version="0.0.0" category-name="uno.vixen.nsx">
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="segname" t="string"><![CDATA[]]></param>
+  <param n="transportzoneid" t="string"><![CDATA[]]></param>
+  <param n="t1router" t="string"><![CDATA[]]></param>
+  <param n="tag" t="string"><![CDATA[]]></param>
+  <param n="cidr" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/segments/" + segname;
+var requestType = "PUT";
+var requestContentType = "application/json";
+var body = {
+    "display_name": segname,
+    "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/" + transportzoneid,
+    "connectivity_path": "/infra/tier-1s/" + t1router,
+    "subnets": [
+      {
+        "gateway_address": cidr
+      }
+    ],
+    "tags": [
+        {
+            "scope" : "",
+            "tag" : tag
+        }
+    ]
+};
+var requestContent = JSON.stringify(body);
+
+
+
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+
+return response;]]></script>
+</dunes-script-module>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="ParseCSVTemplateToJSON" result-type="Array/Properties" api-version="6.0.0" id="3f7d7f3a-9659-4d74-b97d-227626890422" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+  <param n="CSV" t="MimeAttachment"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[// System.log(CSV.name);
+
+// System.log(CSV.mimeType);
+
+// System.log(CSV.content);
+
+//var csv is the CSV file with headers
+function csvJSON(csv){
+
+  var lines=csv.split("\r\n");
+
+  var result = [];
+
+  var headers=lines[0].split(";");
+
+  for(var i=1;i<lines.length;i++){
+
+	  var obj = {};
+	  var currentline=lines[i].split(";");
+
+	  for(var j=0;j<headers.length;j++){
+		  obj[headers[j]] = currentline[j];
+	  }
+
+	  result.push(obj);
+
+  }
+  
+  //return result; //JavaScript object
+  return JSON.stringify(result); //JSON
+}
+
+str = csvJSON(CSV.content);
+
+result = JSON.parse(str);
+
+return result;]]></script>
+</dunes-script-module>

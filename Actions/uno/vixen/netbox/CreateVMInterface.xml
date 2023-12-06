@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="CreateVMInterface" result-type="string" api-version="6.0.0" id="d36b7fa7-6d61-4535-8902-2b7c353beaa4" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="VMID" t="string"><![CDATA[]]></param>
+  <param n="token" t="string"><![CDATA[]]></param>
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="interfacename" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var operationUrl = ("/api/virtualization/interfaces/");
+var requestType = "POST";
+var retrycount = 5;
+
+var body = {
+    "virtual_machine": VMID,
+    "name": interfacename,
+    "enabled": true
+};
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Token " + token);
+System.log(request.headers);
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+var str = JSON.parse(response.contentAsString);
+
+var interfaceid = str.id;
+
+return interfaceid;]]></script>
+</dunes-script-module>

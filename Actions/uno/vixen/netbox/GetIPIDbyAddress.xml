@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetIPIDbyAddress" result-type="string" api-version="6.0.0" id="5df8a721-89b7-44ba-99f3-3d4136f17082" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="att_resthost" t="REST:RESTHost"/>
+  <param n="token" t="string"/>
+  <param n="ipwithmask" t="string"/>
+  <script encoded="false"><![CDATA[var address = ipwithmask.substring(0, ipwithmask.indexOf("/")) + "%2F" + ipwithmask.substring(ipwithmask.indexOf("/")+1, ipwithmask.length);
+var operationUrl = ("/api/ipam/ip-addresses/?address=" + address);
+var requestType = "GET";
+var body = {};
+var retrycount = 5;
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Token " + token);
+System.log(request.headers);
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+
+var str = JSON.parse(response.contentAsString);
+
+var result = Array();
+
+var result = str.results[0].id;
+
+return result;]]></script>
+</dunes-script-module>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="CreateVLANSegment" result-type="string" api-version="6.0.0" id="a1427404-8bf4-4153-81cd-a5152a5b0848" version="0.0.0" category-name="uno.vixen.nsx">
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="segname" t="string"/>
+  <param n="transportzoneid" t="string"/>
+  <param n="vlanid" t="string"/>
+  <param n="tag" t="string"/>
+  <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/segments/" + segname;
+var requestType = "PUT";
+var requestContentType = "application/json";
+var body = {
+    "display_name": segname + "(" + vlanid + ")",
+    "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/" + transportzoneid,
+    "vlan_ids": [vlanid],
+    "tags": [
+        {
+            "scope" : "",
+            "tag" : tag
+        }
+    ]
+};
+var requestContent = JSON.stringify(body);
+
+
+
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+
+return response;]]></script>
+</dunes-script-module>

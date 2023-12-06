@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="AssignIPtoVMInterface" result-type="string" api-version="6.0.0" id="4fd23788-9d22-49a2-a539-3ffee2a40833" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="ipid" t="string"><![CDATA[]]></param>
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="token" t="string"><![CDATA[]]></param>
+  <param n="vmid" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var operationUrl = ("/api/ipam/ip-addresses/" + ipid + "/");
+var requestType = "PATCH";
+var retrycount = 5;
+
+var body = {
+    "assigned_object_type": "virtualization.vminterface",
+    "assigned_object_id": vmid
+};
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Token " + token);
+
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+return strresponse;]]></script>
+</dunes-script-module>

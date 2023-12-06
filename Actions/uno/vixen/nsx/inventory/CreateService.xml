@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="CreateService" result-type="string" api-version="6.0.0" id="adcc56bb-0196-43eb-b350-5ccb7faf43e4" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+  <param n="servicename" t="string"><![CDATA[]]></param>
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="servicedescription" t="string"/>
+  <param n="value" t="string"/>
+  <param n="revision" t="string"/>
+  <script encoded="false"><![CDATA[var protocol = value.substring(0, value.indexOf("/"));
+var port = value.substring(value.indexOf("/")+1,value.length);
+
+System.log(port);
+System.log(protocol);
+
+var operationUrl = "/policy/api/v1/infra/services/" + servicename;
+var requestType = "PUT";
+var requestContentType = "application/json";
+var body = {
+    "description": servicedescription,
+    "display_name": servicename,
+    "service_entries": [
+      {
+          "resource_type": "L4PortSetServiceEntry",
+          "display_name": servicename,
+          "destination_ports": [
+              port
+          ],
+          "l4_protocol": protocol
+      }
+  ]
+};
+var requestContent = JSON.stringify(body);
+
+System.log(requestContent);
+
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+
+return response;]]></script>
+</dunes-script-module>

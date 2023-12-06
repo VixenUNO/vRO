@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item10" object-name="workflow:name=generic" id="f062b65e-e78d-41d5-977e-c6ee4d112c42" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Add Segment</display-name>
+    <position y="22.10526315789474" x="22.10526315789474"/>
+    <input>
+        <param name="vlanID" type="string"/>
+        <param name="SegmentType" type="string"/>
+        <param name="tag" type="string"/>
+        <param name="TransportZone" type="string"/>
+        <param name="NetPrefSize" type="number"/>
+        <param name="router" type="string"/>
+        <param name="segmentName" type="string"/>
+        <param name="parentprefix" type="string"/>
+        <param name="IPsToReserv" type="string"/>
+        <param name="IPDiscoveryProfile" type="string"/>
+    </input>
+    <output/>
+    <attrib name="restHost" type="REST:RESTHost">
+        <value encoded="n">dunes://service.dunes.ch/CustomSDKObject?id='5f1cdc0b-51c7-4bf8-972a-608584e7beb6'&amp;dunesName='REST:RESTHost'</value>
+        <description>Required NSX REST host from vRO</description>
+    </attrib>
+    <attrib name="transportzoneid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="cidr" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="netbox_token" type="string">
+        <value encoded="n">3f640c4329eda41ed4fc4a3a710bbe4d3655c716</value>
+        <description>Required 
+Netbox TOKEN</description>
+    </attrib>
+    <attrib name="netbox_restHost" type="REST:RESTHost">
+        <value encoded="n">dunes://service.dunes.ch/CustomSDKObject?id='2485c7b0-dd17-4ed0-acee-c8f4952b1767'&amp;dunesName='REST:RESTHost'</value>
+        <description>Required NetBox REST Host from vRO</description>
+    </attrib>
+    <attrib name="netbox_prefix_depth" type="string">
+        <value encoded="n">0</value>
+        <description>Required String 
+Netbox prefix depth</description>
+    </attrib>
+    <attrib name="parentprefixid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="actionResult" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="currentprefixid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="AddPrefixOutput" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="currentprefix" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="netboxgwipid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="NetboxDeviceID" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="NetboxDeviceInterfaceName" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="NetboxDeviceInterfaceID" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="SegmentDiscoveryProfileBindingMapsID" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="148.42105263157896" x="443.1578947368422"/>
+    </workflow-item>
+    <workflow-item name="item1" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="211.57894736842107" x="169.47368421052633"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item4" alt-out-name="item6" type="custom-condition" comparator="0">
+        <display-name>Decision</display-name>
+        <script encoded="false">if(SegmentType == "VLAN"){
+    return true;
+} 
+if(SegmentType == "Overlay"){
+    return false;
+}</script>
+        <in-binding>
+            <bind name="SegmentType" type="string" export-name="SegmentType"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="148.42105263157896" x="918.9473684210525"/>
+    </workflow-item>
+    <workflow-item name="item3" out-name="item0" type="task" script-module="uno.vixen.nsx/CreateVLANSegment" comparator="0">
+        <display-name>CreateVLANSegment</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateVLANSegment(restHost,segname,transportzoneid,vlanid,tag);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="segname" type="string" export-name="segmentName">
+                <description></description>
+            </bind>
+            <bind name="transportzoneid" type="string" export-name="transportzoneid">
+                <description></description>
+            </bind>
+            <bind name="vlanid" type="string" export-name="vlanID">
+                <description></description>
+            </bind>
+            <bind name="tag" type="string" export-name="tag">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name=""/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="158.42105263157896" x="508.42105263157896"/>
+    </workflow-item>
+    <workflow-item name="item4" out-name="item3" type="task" script-module="uno.vixen.nsx/GetTransportZoneID" comparator="0">
+        <display-name>GetTransportZoneID</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").GetTransportZoneID(restHost,transportszone);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="transportszone" type="string" export-name="TransportZone">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="transportzoneid"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="158.42105263157896" x="771.5789473684212"/>
+    </workflow-item>
+    <workflow-item name="item5" out-name="item17" type="task" script-module="uno.vixen.nsx/CreateOverlaySegment" comparator="0">
+        <display-name>CreateOverlaySegment</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateOverlaySegment(restHost,segname,transportzoneid,t1router,tag,cidr);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="segname" type="string" export-name="segmentName">
+                <description></description>
+            </bind>
+            <bind name="transportzoneid" type="string" export-name="transportzoneid">
+                <description></description>
+            </bind>
+            <bind name="t1router" type="string" export-name="router">
+                <description></description>
+            </bind>
+            <bind name="tag" type="string" export-name="tag">
+                <description></description>
+            </bind>
+            <bind name="cidr" type="string" export-name="cidr">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name=""/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="221.57894736842107" x="782.1052631578948"/>
+    </workflow-item>
+    <workflow-item name="item6" out-name="item5" type="task" script-module="uno.vixen.nsx/GetTransportZoneID" comparator="0">
+        <display-name>GetTransportZoneID</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").GetTransportZoneID(restHost,transportszone);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="transportszone" type="string" export-name="TransportZone">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="transportzoneid"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="221.57894736842107" x="918.9473684210525"/>
+    </workflow-item>
+    <workflow-item name="item7" out-name="item8" type="task" script-module="uno.vixen.nsx/CreateInventoryGroup" comparator="0">
+        <display-name>CreateInventoryGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateInventoryGroup(restHost,segmentname);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="segmentname" type="string" export-name="segmentName">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name=""/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="221.57894736842107" x="361.0526315789474"/>
+    </workflow-item>
+    <workflow-item name="item8" out-name="item1" type="task" script-module="uno.vixen.nsx/CreateDFWRule" comparator="0">
+        <display-name>CreateDFWRule</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateDFWRule(restHost,segmentname);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="segmentname" type="string" export-name="segmentName">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="221.57894736842107" x="234.73684210526318"/>
+    </workflow-item>
+    <workflow-item name="item9" out-name="item11" type="task" script-module="uno.vixen.netbox/AddPrefix" comparator="0">
+        <display-name>AddPrefix</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").AddPrefix(token,att_resthost,prefixsize,parentprefixid);
+</script>
+        <in-binding>
+            <bind name="token" type="string" export-name="netbox_token">
+                <description></description>
+            </bind>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost">
+                <description></description>
+            </bind>
+            <bind name="prefixsize" type="number" export-name="NetPrefSize">
+                <description></description>
+            </bind>
+            <bind name="parentprefixid" type="string" export-name="parentprefixid">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="AddPrefixOutput"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="32.10526315789474" x="182.10526315789474"/>
+    </workflow-item>
+    <workflow-item name="item10" out-name="item9" type="task" script-module="uno.vixen.netbox/GetParentPrefixeID" comparator="0">
+        <display-name>GetParentPrefixeID</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetParentPrefixeID(token,att_resthost,prefix);
+</script>
+        <in-binding>
+            <bind name="token" type="string" export-name="netbox_token">
+                <description></description>
+            </bind>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost">
+                <description></description>
+            </bind>
+            <bind name="prefix" type="string" export-name="parentprefix">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="parentprefixid"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="32.10526315789474" x="82.10526315789474"/>
+    </workflow-item>
+    <workflow-item name="item11" out-name="item12" type="task" comparator="0">
+        <display-name>Parse Additional parameters</display-name>
+        <script encoded="false">var str = JSON.parse(AddPrefixOutput);
+
+
+var prevsymb = str.prefix.substring(str.prefix.indexOf("/")-2, str.prefix.indexOf("/")-1);
+
+System.log(prevsymb);
+
+if(prevsymb == "."){
+    var temp = str.prefix.substring(str.prefix.indexOf("/")-1, str.prefix.indexOf("/"));
+    var last = Number(temp)+1;
+    var cidrip = str.prefix.substring(0, str.prefix.indexOf("/")-1) + last;
+}else{
+    var temp = str.prefix.substring(str.prefix.indexOf("/")-2, str.prefix.indexOf("/"));
+    var last = Number(temp)+1;
+    var cidrip = str.prefix.substring(0, str.prefix.indexOf("/")-2) + last;
+}
+
+
+cidr = cidrip + "/" + NetPrefSize;
+currentprefixid = str.id;
+currentprefix = str.prefix;
+NetboxDeviceInterfaceName = segmentName + "_GW";
+
+
+System.log(cidrip);
+System.log(cidr);
+System.log(currentprefix);</script>
+        <in-binding>
+            <bind name="AddPrefixOutput" type="string" export-name="AddPrefixOutput"/>
+            <bind name="NetPrefSize" type="number" export-name="NetPrefSize"/>
+            <bind name="segmentName" type="string" export-name="segmentName"/>
+        </in-binding>
+        <out-binding>
+            <bind name="currentprefixid" type="string" export-name="currentprefixid"/>
+            <bind name="cidr" type="string" export-name="cidr"/>
+            <bind name="currentprefix" type="string" export-name="currentprefix"/>
+            <bind name="NetboxDeviceInterfaceName" type="string" export-name="NetboxDeviceInterfaceName"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="32.10526315789474" x="297.89473684210526"/>
+    </workflow-item>
+    <workflow-item name="item12" out-name="item13" type="task" script-module="uno.vixen.netbox/ReservIPs" comparator="0">
+        <display-name>ReservIPs</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").ReservIPs(cidr,NetPrefSize,att_resthost,token,IPsToReserv);
+</script>
+        <in-binding>
+            <bind name="cidr" type="string" export-name="cidr">
+                <description></description>
+            </bind>
+            <bind name="NetPrefSize" type="number" export-name="NetPrefSize">
+                <description></description>
+            </bind>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="netbox_token">
+                <description></description>
+            </bind>
+            <bind name="IPsToReserv" type="string" export-name="IPsToReserv">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="32.10526315789474" x="424.2105263157895"/>
+    </workflow-item>
+    <workflow-item name="item13" out-name="item14" type="task" script-module="uno.vixen.netbox/GetIPIDbyAddress" comparator="0">
+        <display-name>GetIPIDbyAddress</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetIPIDbyAddress(att_resthost,token,ipwithmask);
+</script>
+        <in-binding>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="netbox_token">
+                <description></description>
+            </bind>
+            <bind name="ipwithmask" type="string" export-name="cidr">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="netboxgwipid"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="32.10526315789474" x="529.4736842105264"/>
+    </workflow-item>
+    <workflow-item name="item14" out-name="item16" type="task" script-module="uno.vixen.netbox/GetDeviceID" comparator="0">
+        <display-name>GetDeviceID</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetDeviceID(devicename,token,att_resthost);
+</script>
+        <in-binding>
+            <bind name="devicename" type="string" export-name="router">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="netbox_token">
+                <description></description>
+            </bind>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="NetboxDeviceID"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="32.10526315789474" x="634.7368421052632"/>
+    </workflow-item>
+    <workflow-item name="item15" out-name="item2" type="task" script-module="uno.vixen.netbox/AssignIPtoDeviceInterface" comparator="0">
+        <display-name>AssignIPtoDeviceInterface</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").AssignIPtoDeviceInterface(ipid,att_resthost,token,deviceid);
+</script>
+        <in-binding>
+            <bind name="ipid" type="string" export-name="netboxgwipid">
+                <description></description>
+            </bind>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="netbox_token">
+                <description></description>
+            </bind>
+            <bind name="deviceid" type="string" export-name="NetboxDeviceInterfaceID">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="32.10526315789474" x="908.421052631579"/>
+    </workflow-item>
+    <workflow-item name="item16" out-name="item15" type="task" script-module="uno.vixen.netbox/CreateDeviceInterface" comparator="0">
+        <display-name>CreateDeviceInterface</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").CreateDeviceInterface(DeviceID,token,att_resthost,interfacename);
+</script>
+        <in-binding>
+            <bind name="DeviceID" type="string" export-name="NetboxDeviceID">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="netbox_token">
+                <description></description>
+            </bind>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost">
+                <description></description>
+            </bind>
+            <bind name="interfacename" type="string" export-name="NetboxDeviceInterfaceName">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="NetboxDeviceInterfaceID"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="32.10526315789474" x="761.0526315789474"/>
+    </workflow-item>
+    <workflow-item name="item17" out-name="item7" type="task" script-module="uno.vixen.nsx/CreateSegmentIPDiscoveryBindingMap" comparator="0">
+        <display-name>CreateSegmentIPDiscoveryBindingMap</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateSegmentIPDiscoveryBindingMap(segmentname,restHost,profileid);
+</script>
+        <in-binding>
+            <bind name="segmentname" type="string" export-name="segmentName">
+                <description></description>
+            </bind>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="profileid" type="string" export-name="IPDiscoveryProfile">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="221.57894736842107" x="571.578947368421"/>
+    </workflow-item>
+</ns2:workflow>

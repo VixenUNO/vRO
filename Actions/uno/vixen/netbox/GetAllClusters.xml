@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetAllClusters" result-type="Array/string" api-version="6.0.0" id="271be242-78b1-4b3c-8d4b-f8d78208f5ad" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="token" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var operationUrl = ("/api/virtualization/clusters/");
+var requestType = "GET";
+var body = {};
+var retrycount = 5;
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Token " + token);
+System.log(request.headers);
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+
+
+var str = JSON.parse(response.contentAsString);
+var numofelements = str.count;
+var countto = numofelements - 1; 
+//System.log("Count To" + countto);
+//System.log("tz" + str.results[1].prefix);
+// System.log("str" + JSON.stringify(str));
+
+var result = Array();
+
+for (i = 0; i <= countto; i++) {
+
+
+
+    result.push(str.results[i].name);
+
+
+
+}
+
+return result;]]></script>
+</dunes-script-module>

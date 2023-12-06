@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="b8f479bb-672f-4a2c-8658-40d9ac8d89e5" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="0" resumeFromFailedMode="0">
+    <display-name>felix-test01</display-name>
+    <position y="50.0" x="100.0"/>
+    <input/>
+    <output/>
+    <attrib name="folder" type="VC:VmFolder">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="name" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="vm" type="VC:VirtualMachine">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="powerOn" type="boolean">
+        <value encoded="n">true</value>
+    </attrib>
+    <attrib name="template" type="boolean">
+        <value encoded="n">false</value>
+    </attrib>
+    <attrib name="datastore" type="VC:Datastore">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="host" type="VC:HostSystem">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="pool" type="VC:ResourcePool">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="doSysprep" type="boolean">
+        <value encoded="n">false</value>
+    </attrib>
+    <attrib name="clientName" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="productId" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="joinDomain" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="joinWorkgroup" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="domainAdminUsername" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="domainAdminPassword" type="SecureString">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="licenseMode" type="VC:CustomizationLicenseDataMode">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="licenseUsers" type="number">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="newAdminPassword" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="inTimezone" type="Enums:MSTimeZone">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="network" type="VC:Network">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="dnsServerList" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="dnsDomain" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="dhcp" type="boolean">
+        <value encoded="n">true</value>
+    </attrib>
+    <attrib name="gateway" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="ipAddress" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="macAddress" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="netBIOS" type="VC:CustomizationNetBIOSMode">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="primaryWINS" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="secondaryWINS" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="subnetMask" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="fullName" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="orgName" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="newVM" type="VC:VirtualMachine">
+        <value encoded="n"/>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="50.0" x="300.0"/>
+    </workflow-item>
+    <workflow-item name="item1" out-name="item0" type="link" linked-workflow-id="BD80808080808080808080808080808080C280800122528313869552e41805bb1" comparator="0">
+        <display-name>Clone, Windows Sysprep with single NIC and credential</display-name>
+        <script encoded="false"></script>
+        <in-binding>
+            <bind name="folder" type="VC:VmFolder" export-name="folder">
+                <description>Virtual machine folder</description>
+            </bind>
+            <bind name="name" type="string" export-name="name">
+                <description>New virtual machine name</description>
+            </bind>
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm">
+                <description>Virtual machine to clone</description>
+            </bind>
+            <bind name="powerOn" type="boolean" export-name="powerOn">
+                <description>Specifies whether or not to power on the new virtual machine</description>
+            </bind>
+            <bind name="template" type="boolean" export-name="template">
+                <description>Specifies whether or not to mark the new virtual machine as a template</description>
+            </bind>
+            <bind name="datastore" type="VC:Datastore" export-name="datastore">
+                <description>Datastore in which to store the virtual machine. If not specified, the current datastore is used</description>
+            </bind>
+            <bind name="host" type="VC:HostSystem" export-name="host">
+                <description>(Optional) Host on which to create the virtual machine</description>
+            </bind>
+            <bind name="pool" type="VC:ResourcePool" export-name="pool">
+                <description>(Optional) Resource pool in which to create the virtual machine</description>
+            </bind>
+            <bind name="doSysprep" type="boolean" export-name="doSysprep">
+                <description>Run the Sysprep operations and wait for the task to complete. Not used if the virtual machine is marked as template</description>
+            </bind>
+            <bind name="clientName" type="string" export-name="clientName">
+                <description>Name or prefix name of the Windows client</description>
+            </bind>
+            <bind name="productId" type="string" export-name="productId">
+                <description>Microsoft Sysprep requires that a valid serial number be included in the answer file when mini-setup runs. This serial number is ignored if the original guest operating system was installed using a volume-licensed CD</description>
+            </bind>
+            <bind name="joinDomain" type="string" export-name="joinDomain">
+                <description>(Optional) The domain that the virtual machine should join. If this value is supplied, then domainAdmin and domainAdminPassword must also be supplied, and the workgroup name must be empty</description>
+            </bind>
+            <bind name="joinWorkgroup" type="string" export-name="joinWorkgroup">
+                <description>(Optional) The workgroup that the virtual machine should join. If this value is supplied, then the domain name and authentication fields must be empty</description>
+            </bind>
+            <bind name="domainAdmin" type="Credential" export-name="">
+                <description>(Optional) This is the domain user account used for authentication if the virtual machine is joining a domain. The user does not need to be a domain administrator, but the account must have the privileges required to add computers to the domain</description>
+            </bind>
+            <bind name="domainAdminUsername" type="string" export-name="domainAdminUsername">
+                <description>(Optional) This is the domain user account used for authentication if the virtual machine is joining a domain. The user does not need to be a domain administrator, but the account must have the privileges required to add computers to the domain</description>
+            </bind>
+            <bind name="domainAdminPassword" type="SecureString" export-name="domainAdminPassword">
+                <description>(Optional) This is the password for the domain user account used for authentication if the virtual machine is joining a domain. The user does not need to be a domain administrator, but the account must have the privileges required to add computers to the domain</description>
+            </bind>
+            <bind name="licenseMode" type="VC:CustomizationLicenseDataMode" export-name="licenseMode">
+                <description>Server licensing mode</description>
+            </bind>
+            <bind name="licenseUsers" type="number" export-name="licenseUsers">
+                <description>This key is valid only if AutoMode = PerServer</description>
+            </bind>
+            <bind name="newAdminPassword" type="string" export-name="newAdminPassword">
+                <description>The password string. It is encrypted if the associated plainText flag is false</description>
+            </bind>
+            <bind name="inTimezone" type="Enums:MSTimeZone" export-name="inTimezone">
+                <description>Timezone for the newly created virtual machine</description>
+            </bind>
+            <bind name="network" type="VC:Network" export-name="network">
+                <description>Network on which to attach the virtual network interface</description>
+            </bind>
+            <bind name="dnsServerList" type="Array/string" export-name="dnsServerList">
+                <description>(Optional) List of DNS servers for a virtual network adapter with a static IP address</description>
+            </bind>
+            <bind name="dnsDomain" type="string" export-name="dnsDomain">
+                <description>(Optional) DNS domain suffix such as vmware.com</description>
+            </bind>
+            <bind name="dhcp" type="boolean" export-name="dhcp">
+                <description>Use a DHCP server to configure the virtual network adapter</description>
+            </bind>
+            <bind name="gateway" type="Array/string" export-name="gateway">
+                <description>(Optional)List of gateways, in order of preference</description>
+            </bind>
+            <bind name="ipAddress" type="string" export-name="ipAddress">
+                <description>Fixed valid IP address</description>
+            </bind>
+            <bind name="macAddress" type="string" export-name="macAddress">
+                <description>(Optional) The MAC address of a network adapter being customized. If it is not included, the customization process maps the settings from the virtual machine's network adapters, in PCI slot order</description>
+            </bind>
+            <bind name="netBIOS" type="VC:CustomizationNetBIOSMode" export-name="netBIOS">
+                <description>(Optional) NetBIOS setting for Windows</description>
+            </bind>
+            <bind name="primaryWINS" type="string" export-name="primaryWINS">
+                <description>(Optional) The IP address of the primary WINS server. This property is ignored for Linux guest operating systems</description>
+            </bind>
+            <bind name="secondaryWINS" type="string" export-name="secondaryWINS">
+                <description>(Optional) The IP address of the secondary WINS server. This property is ignored for Linux guest operating systems</description>
+            </bind>
+            <bind name="subnetMask" type="string" export-name="subnetMask">
+                <description>(Optional) Subnet mask for this virtual network adapter</description>
+            </bind>
+            <bind name="fullName" type="string" export-name="fullName">
+                <description>User's full name</description>
+            </bind>
+            <bind name="orgName" type="string" export-name="orgName">
+                <description>Organization name</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="newVM" type="VC:VirtualMachine" export-name="newVM">
+                <description>The newly created virtual machine</description>
+            </bind>
+        </out-binding>
+        <description> </description>
+        <position y="60.0" x="150.0"/>
+    </workflow-item>
+</ns2:workflow>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="AddPrefix" result-type="string" api-version="6.0.0" id="dc29e491-8e45-425b-816b-ec04e1ad25ab" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="token" t="string"><![CDATA[]]></param>
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="prefixsize" t="number"><![CDATA[]]></param>
+  <param n="parentprefixid" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var id = parentprefixid;
+var operationUrl = ("/api/ipam/prefixes/" + id + "/available-prefixes/");
+var requestType = "POST";
+var retrycount = 5;
+
+var body = {
+    "prefix_length" : prefixsize
+};
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Token " + token);
+System.log(request.headers);
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+return strresponse;]]></script>
+</dunes-script-module>

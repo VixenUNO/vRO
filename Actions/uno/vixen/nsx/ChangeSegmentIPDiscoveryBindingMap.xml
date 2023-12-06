@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="ChangeSegmentIPDiscoveryBindingMap" result-type="string" api-version="6.0.0" id="5a04b307-2cae-4fca-a5bb-53185c66da76" version="0.0.0" category-name="uno.vixen.nsx">
+  <param n="segmentname" t="string"><![CDATA[]]></param>
+  <param n="mapid" t="string"><![CDATA[]]></param>
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="profileid" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/segments/" + segmentname + "/segment-discovery-profile-binding-maps/" + mapid;
+var requestType = "PUT";
+var requestContentType = "application/json";
+var profilepath = "/infra/ip-discovery-profiles/" + profileid;
+
+var body = {
+  "resource_type":" SegmentDiscoveryProfileBindingMap",
+  "ip_discovery_profile_path":profilepath,
+  "_revision": 1
+};
+var requestContent = JSON.stringify(body);
+
+
+
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+
+return response;]]></script>
+</dunes-script-module>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="AssignIPtoDeviceInterface" result-type="string" api-version="6.0.0" id="07d248b0-e541-43e1-b1fd-8907752fdb15" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="ipid" t="string"/>
+  <param n="att_resthost" t="REST:RESTHost"/>
+  <param n="token" t="string"/>
+  <param n="deviceid" t="string"/>
+  <script encoded="false"><![CDATA[var operationUrl = ("/api/ipam/ip-addresses/" + ipid + "/");
+var requestType = "PATCH";
+var retrycount = 5;
+
+var body = {
+    "assigned_object_type": "dcim.interface",
+    "assigned_object_id": deviceid
+};
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Token " + token);
+
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+return strresponse;]]></script>
+</dunes-script-module>

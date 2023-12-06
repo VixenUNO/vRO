@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="ReservIPs" result-type="Any" api-version="6.0.0" id="8b8bb716-525d-4c9c-8c21-7fb447168405" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="cidr" t="string"><![CDATA[]]></param>
+  <param n="NetPrefSize" t="number"><![CDATA[]]></param>
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="token" t="string"><![CDATA[]]></param>
+  <param n="IPsToReserv" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var prevsymb = cidr.substring(cidr.indexOf("/")-2, cidr.indexOf("/")-1);
+
+System.log(prevsymb);
+
+const countto = IPsToReserv;
+
+System.log(countto);
+
+
+var operationUrl = ("/api/ipam/ip-addresses/");
+var requestType = "POST";
+var retrycount = 5;
+
+
+for (c = 0; c <= countto; c++) {
+    if (prevsymb == ".") {
+        var temp = cidr.substring(cidr.indexOf("/") - 1, cidr.indexOf("/"));
+        var last = Number(temp) + c;
+        var ip = cidr.substring(0, cidr.indexOf("/") - 1) + last;
+    } else {
+        var temp = cidr.substring(cidr.indexOf("/") - 2, cidr.indexOf("/"));
+        var last = Number(temp) + c;
+        var ip = cidr.substring(0, cidr.indexOf("/") - 2) + last;
+    };
+    System.log(ip);
+
+
+    var addr = ip + '/' + NetPrefSize
+
+    System.log(addr);
+
+    var body = {
+        "address": addr,
+        "status": "reserved"
+    };
+
+    var requestContent = JSON.stringify(body);
+
+    var requestContentType = "application/json";
+    var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+    request.contentType = requestContentType;
+    request.setHeader("Authorization", "Token " + token);
+    System.log(request.requestContent);
+    for (var i = 1; i < retrycount + 1; i++) {
+        try {
+            response = request.execute();
+        } catch (e) {
+            System.error(e);
+            System.sleep(10000);
+            continue;
+        }
+        strresponse = response.contentAsString;
+        System.log("Response Status Code: " + response.statusCode);
+        System.log("Content As String: " + strresponse);
+        break;
+    }
+
+
+};
+
+return true;]]></script>
+</dunes-script-module>

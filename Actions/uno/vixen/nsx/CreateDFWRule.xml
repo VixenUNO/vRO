@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="CreateDFWRule" result-type="string" api-version="6.0.0" id="ffbd1096-e5af-4235-b4b0-9a2d96c30b32" version="0.0.0" category-name="uno.vixen.nsx">
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="segmentname" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var groupname = segmentname + "_SEG";
+var operationUrl = "/policy/api/v1/infra/domains/default/security-policies/Intra-segment_traffic/rules/" + segmentname;
+var requestType = "PUT";
+var requestContentType = "application/json";
+var body = {
+  "display_name": segmentname,
+  "source_groups": [
+      "/infra/domains/default/groups/" + groupname
+  ],
+  "logged": false,
+  "destination_groups": [
+      "/infra/domains/default/groups/" + groupname
+  ],
+  "scope": [
+      "ANY"
+  ],
+  "action": "ALLOW",
+  "services": [
+      "ANY"
+  ]
+};
+var requestContent = JSON.stringify(body);
+
+
+
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+
+return response;]]></script>
+</dunes-script-module>

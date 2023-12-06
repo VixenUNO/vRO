@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="PatchServiceGroup" result-type="string" api-version="6.0.0" id="2d222514-8748-466f-8f79-624cc12d3bae" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+  <param n="servicename" t="string"><![CDATA[]]></param>
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="value" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var nestedpaths = value.split(',');
+
+
+var operationUrl = "/policy/api/v1/infra/services/" + servicename;
+var requestType = "PATCH";
+var requestContentType = "application/json";
+var body = {
+    "service_entries" : []
+};
+
+
+
+var gen = Array();
+
+for(var q=0;q<nestedpaths.length;q++){
+
+    gen[q] = {};
+    gen[q].nested_service_path = {};
+    gen[q].resource_type = {};
+    gen[q].nested_service_path = nestedpaths[q];
+    gen[q].resource_type = "NestedServiceServiceEntry";
+
+};
+
+body.service_entries = gen;
+
+
+var requestContent = JSON.stringify(body);
+
+System.log(requestContent);
+
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+
+return response;]]></script>
+</dunes-script-module>

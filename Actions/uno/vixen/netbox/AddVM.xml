@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="AddVM" result-type="string" api-version="6.0.0" id="cd937fb7-c1aa-4e2f-84fb-025fc07350bc" version="0.0.0" category-name="uno.vixen.netbox">
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="token" t="string"><![CDATA[]]></param>
+  <param n="vmname" t="string"><![CDATA[]]></param>
+  <param n="siteid" t="string"><![CDATA[]]></param>
+  <param n="roleid" t="string"/>
+  <param n="clusterid" t="string"/>
+  <script encoded="false"><![CDATA[var operationUrl = ("/api/virtualization/virtual-machines/");
+var requestType = "POST";
+var retrycount = 5;
+
+
+var body = {
+  "name": vmname,
+  "status": "active",
+  "site": siteid
+};
+
+
+if(roleid != null){
+    body.role = roleid;
+};
+
+if(clusterid != null){
+    body.cluster = clusterid;
+};
+
+var requestContent = JSON.stringify(body);
+
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Token " + token);
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+var str = JSON.parse(response.contentAsString);
+
+var result = str.id;
+
+return result;]]></script>
+</dunes-script-module>

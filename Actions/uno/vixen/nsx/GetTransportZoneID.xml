@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetTransportZoneID" result-type="string" api-version="6.0.0" id="26ea313a-48d4-469c-8149-724c6b4cbfcb" version="0.0.0" category-name="uno.vixen.nsx">
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="transportszone" t="string"/>
+  <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/sites/default/enforcement-points/default/transport-zones";
+var requestType = "GET";
+var requestContent = "";
+var requestContentType = "application/json";
+var tzid = "";
+
+System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+// System.log("request: " + request.fullUrl);
+var response = request.execute();
+// System.log("response: " + response.contentAsString);
+var str = JSON.parse(response.contentAsString);
+var numofelements = str.result_count;
+var countto = numofelements - 1; 
+// System.log("Count To" + countto);
+// System.log("tz" + str.results[1].display_name);
+// System.log("str" + JSON.stringify(str));
+
+for (i = 0; i <= countto; i++) {
+    if(str.results[i].display_name == transportszone){
+        tzid = str.results[i].id;
+    }
+}
+
+return tzid;]]></script>
+</dunes-script-module>
