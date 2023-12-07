@@ -2,11 +2,13 @@
 <dunes-script-module name="CreateEmptyGroup" result-type="string" api-version="6.0.0" id="b382a36c-2e7f-477a-88ad-3bf88d35136d" version="0.0.0" category-name="uno.vixen.nsx.inventory">
   <param n="groupname" t="string"><![CDATA[]]></param>
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="description" t="string"/>
   <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/domains/default/groups/" + groupname;
 var requestType = "PUT";
 var requestContentType = "application/json";
 var body = {
-    "display_name": groupname
+    "display_name": groupname,
+    "description": description
 };
 var requestContent = JSON.stringify(body);
 

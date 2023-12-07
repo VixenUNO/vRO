@@ -22,7 +22,7 @@ for(var q=0;q<nestedpaths.length;q++){
     gen[q] = {};
     gen[q].nested_service_path = {};
     gen[q].resource_type = {};
-    gen[q].nested_service_path = nestedpaths[q];
+    gen[q].nested_service_path = "/infra/services/" + nestedpaths[q];
     gen[q].resource_type = "NestedServiceServiceEntry";
 
 };

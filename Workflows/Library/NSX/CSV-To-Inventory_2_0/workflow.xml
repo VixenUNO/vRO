@@ -124,7 +124,7 @@ actionResult = System.getModule("uno.vixen.nsx.inventory").GetAllGroups(restHost
             <bind name="actionResult" type="Array/string" export-name="AllGroups"/>
         </out-binding>
         <description>Add a note to the workflow schema.</description>
-        <position y="228.18629557583336" x="79.6916089549336"/>
+        <position y="240.0" x="80.0"/>
     </workflow-item>
     <workflow-item name="item17" out-name="item20" type="task" comparator="0">
         <display-name>Parse Types to arrays</display-name>
@@ -175,32 +175,23 @@ for (i = 0; i &lt; arrayfromjson.length; i++) {
             <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
         </out-binding>
         <description>Simple task with custom script capability.</description>
-        <position y="280.0" x="80.0"/>
+        <position y="300.0" x="80.0"/>
     </workflow-item>
-    <workflow-item name="item18" type="end" end-mode="0" comparator="0">
-        <in-binding/>
-        <out-binding/>
-        <position y="80.0" x="360.0"/>
-    </workflow-item>
-    <workflow-item name="item19" type="end" end-mode="0" comparator="0">
-        <position y="0.0" x="680.0"/>
-    </workflow-item>
-    <workflow-item name="item20" out-name="item18" alt-out-name="item21" type="custom-condition" comparator="0">
-        <display-name>Create Host Groups?</display-name>
-        <script encoded="false">if(iteration&lt;Host.length){
+    <workflow-item name="item20" out-name="item23" alt-out-name="item21" type="custom-condition" comparator="0">
+        <display-name>Host array exist?</display-name>
+        <script encoded="false">if(0&lt;Host.length){
     return true;
 }else{
     return false;
 }</script>
         <in-binding>
-            <bind name="iteration" type="number" export-name="iteration"/>
             <bind name="Host" type="Array/Properties" export-name="Host"/>
         </in-binding>
         <out-binding/>
         <description>Custom decision based on a custom script.</description>
         <position y="0.0" x="320.0"/>
     </workflow-item>
-    <workflow-item name="item21" out-name="item19" type="task" comparator="0">
+    <workflow-item name="item21" out-name="item31" type="task" comparator="0">
         <display-name>Reset Iteration number</display-name>
         <script encoded="false">iteration=0;</script>
         <in-binding>
@@ -211,5 +202,546 @@ for (i = 0; i &lt; arrayfromjson.length; i++) {
         </out-binding>
         <description>Simple task with custom script capability.</description>
         <position y="10.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item23" out-name="item24" alt-out-name="item21" type="custom-condition" comparator="0">
+        <display-name>Create Host Group?</display-name>
+        <script encoded="false">if(iteration&lt;Host.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="320.0"/>
+    </workflow-item>
+    <workflow-item name="item24" out-name="item26" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = Host[iteration].Name_Parent_group;
+Value_Child_element = Host[iteration].Value_Child_element;
+Description = Host[iteration].Description;</script>
+        <in-binding>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item26" out-name="item29" alt-out-name="item28" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllGroups.length;i++){
+    if(Name_Parent_group == AllGroups[i]){
+        return true;
+    }
+}
+return false;</script>
+        <in-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item28" out-name="item29" type="task" script-module="uno.vixen.nsx/CreateInventoryHostGroup" comparator="0">
+        <display-name>CreateInventoryHostGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateInventoryHostGroup(restHost,groupname,ip,description);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="groupname" type="string" export-name="Name_Parent_group">
+                <description></description>
+            </bind>
+            <bind name="ip" type="string" export-name="Value_Child_element">
+                <description></description>
+            </bind>
+            <bind name="description" type="string" export-name="Description">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="290.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item29" out-name="item23" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase iteration</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="290.0" x="320.0"/>
+    </workflow-item>
+    <workflow-item name="item31" out-name="item34" alt-out-name="item32" type="custom-condition" comparator="0">
+        <display-name>Group array exist?</display-name>
+        <script encoded="false">if(0&lt;Group.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="620.0"/>
+    </workflow-item>
+    <workflow-item name="item32" out-name="item41" type="task" comparator="0">
+        <display-name>Reset iteration number</display-name>
+        <script encoded="false">iteration = 0;</script>
+        <in-binding/>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="760.0"/>
+    </workflow-item>
+    <workflow-item name="item34" out-name="item35" alt-out-name="item32" type="custom-condition" comparator="0">
+        <display-name>Create Group?</display-name>
+        <script encoded="false">if(iteration&lt;Group.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="620.0"/>
+    </workflow-item>
+    <workflow-item name="item35" out-name="item37" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = Group[iteration].Name_Parent_group;
+Value_Child_element = Group[iteration].Value_Child_element;
+Description = Group[iteration].Description;</script>
+        <in-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="760.0"/>
+    </workflow-item>
+    <workflow-item name="item37" out-name="item38" alt-out-name="item39" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllGroups.length;i++){
+    if(Name_Parent_group == AllGroups[i]){
+        return true;
+    }
+}
+return false;</script>
+        <in-binding>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="760.0"/>
+    </workflow-item>
+    <workflow-item name="item38" out-name="item34" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="290.0" x="620.0"/>
+    </workflow-item>
+    <workflow-item name="item39" out-name="item38" type="task" script-module="uno.vixen.nsx.inventory/CreateEmptyGroup" comparator="0">
+        <display-name>CreateEmptyGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx.inventory").CreateEmptyGroup(groupname,restHost,description);
+</script>
+        <in-binding>
+            <bind name="groupname" type="string" export-name="Name_Parent_group">
+                <description></description>
+            </bind>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="description" type="string" export-name="Description">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="290.0" x="760.0"/>
+    </workflow-item>
+    <workflow-item name="item41" out-name="item43" alt-out-name="item44" type="custom-condition" comparator="0">
+        <display-name>SubGroup array exist?</display-name>
+        <script encoded="false">if(0&lt;SubGroup.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="920.0"/>
+    </workflow-item>
+    <workflow-item name="item43" out-name="item45" alt-out-name="item44" type="custom-condition" comparator="0">
+        <display-name>Create SubGroup?</display-name>
+        <script encoded="false">if(iteration&lt;SubGroup.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="920.0"/>
+    </workflow-item>
+    <workflow-item name="item44" out-name="item49" type="task" comparator="0">
+        <display-name>Reset iteration number</display-name>
+        <script encoded="false">iteration = 0;</script>
+        <in-binding/>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="1060.0"/>
+    </workflow-item>
+    <workflow-item name="item45" out-name="item47" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = SubGroup[iteration].Name_Parent_group;
+Value_Child_element = SubGroup[iteration].Value_Child_element;
+Description = SubGroup[iteration].Description;</script>
+        <in-binding>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="1060.0"/>
+    </workflow-item>
+    <workflow-item name="item47" out-name="item63" alt-out-name="item63" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllGroups.length;i++){
+    if(Name_Parent_group == AllGroups[i]){
+        return true;
+    }
+}
+return false;</script>
+        <in-binding>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="1060.0"/>
+    </workflow-item>
+    <workflow-item name="item49" out-name="item51" alt-out-name="item52" type="custom-condition" comparator="0">
+        <display-name>Service array exist?</display-name>
+        <script encoded="false">if(0&lt;Service.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="1220.0"/>
+    </workflow-item>
+    <workflow-item name="item51" out-name="item53" alt-out-name="item52" type="custom-condition" comparator="0">
+        <display-name>Create Service?</display-name>
+        <script encoded="false">if(iteration&lt;Service.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="1220.0"/>
+    </workflow-item>
+    <workflow-item name="item52" out-name="item59" type="task" comparator="0">
+        <display-name>Reset iteration number</display-name>
+        <script encoded="false">iteration = 0;</script>
+        <in-binding/>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="1360.0"/>
+    </workflow-item>
+    <workflow-item name="item53" out-name="item55" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = Service[iteration].Name_Parent_group;
+Value_Child_element = Service[iteration].Value_Child_element;
+Description = Service[iteration].Description;</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="1360.0"/>
+    </workflow-item>
+    <workflow-item name="item55" out-name="item56" alt-out-name="item57" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllServices.length;i++){
+    if(Name_Parent_group == AllServices[i]){
+        return true;
+    }
+}
+return false;</script>
+        <in-binding>
+            <bind name="AllServices" type="Array/string" export-name="AllServices"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="1360.0"/>
+    </workflow-item>
+    <workflow-item name="item56" out-name="item51" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="290.0" x="1220.0"/>
+    </workflow-item>
+    <workflow-item name="item57" out-name="item56" type="task" script-module="uno.vixen.nsx.inventory/CreateService" comparator="0">
+        <display-name>CreateService</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx.inventory").CreateService(servicename,restHost,servicedescription,value,revision);
+</script>
+        <in-binding>
+            <bind name="servicename" type="string" export-name="Name_Parent_group">
+                <description></description>
+            </bind>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="servicedescription" type="string" export-name="Description">
+                <description></description>
+            </bind>
+            <bind name="value" type="string" export-name="Value_Child_element">
+                <description></description>
+            </bind>
+            <bind name="revision" type="string" export-name="revision">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="290.0" x="1360.0"/>
+    </workflow-item>
+    <workflow-item name="item58" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="0.0" x="1740.0"/>
+    </workflow-item>
+    <workflow-item name="item59" out-name="item61" alt-out-name="item58" type="custom-condition" comparator="0">
+        <display-name>ServiceGroup array exist?</display-name>
+        <script encoded="false">if(0&lt;ServiceGroup.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="1520.0"/>
+    </workflow-item>
+    <workflow-item name="item61" out-name="item62" alt-out-name="item58" type="custom-condition" comparator="0">
+        <display-name>Create ServiceGroup?</display-name>
+        <script encoded="false">if(iteration&lt;ServiceGroup.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="1520.0"/>
+    </workflow-item>
+    <workflow-item name="item62" out-name="item65" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = ServiceGroup[iteration].Name_Parent_group;
+Value_Child_element = ServiceGroup[iteration].Value_Child_element;
+Description = ServiceGroup[iteration].Description;</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="1660.0"/>
+    </workflow-item>
+    <workflow-item name="item63" out-name="item43" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="290.0" x="920.0"/>
+    </workflow-item>
+    <workflow-item name="item65" out-name="item68" alt-out-name="item66" type="custom-condition" comparator="0">
+        <display-name>Nmae exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllServices.length;i++){
+    if(Name_Parent_group == AllServices[i]){
+        return true;
+    }
+}
+return false;</script>
+        <in-binding>
+            <bind name="AllServices" type="Array/string" export-name="AllServices"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="1660.0"/>
+    </workflow-item>
+    <workflow-item name="item66" out-name="item67" type="task" script-module="uno.vixen.nsx.inventory/CreateServiceGroup" comparator="0">
+        <display-name>CreateServiceGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx.inventory").CreateServiceGroup(servicename,restHost,servicedescription,value,revision);
+</script>
+        <in-binding>
+            <bind name="servicename" type="string" export-name="Name_Parent_group">
+                <description></description>
+            </bind>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="servicedescription" type="string" export-name="Description">
+                <description></description>
+            </bind>
+            <bind name="value" type="string" export-name="Value_Child_element">
+                <description></description>
+            </bind>
+            <bind name="revision" type="string" export-name="revision">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="290.0" x="1660.0"/>
+    </workflow-item>
+    <workflow-item name="item67" out-name="item61" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="290.0" x="1520.0"/>
+    </workflow-item>
+    <workflow-item name="item68" out-name="item67" type="task" script-module="uno.vixen.nsx.inventory/PatchServiceGroup" comparator="0">
+        <display-name>PatchServiceGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx.inventory").PatchServiceGroup(servicename,restHost,value);
+</script>
+        <in-binding>
+            <bind name="servicename" type="string" export-name="Name_Parent_group">
+                <description></description>
+            </bind>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="value" type="string" export-name="Value_Child_element">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="240.0" x="1600.0"/>
     </workflow-item>
 </ns2:workflow>
