@@ -1,0 +1,11 @@
+Type;Name_Parent_group;Value_Child_element;Description
+Host;Host_10.1.1.1;10.1.1.1;v-dc1-kolya
+Host;Host_10.1.1.2;10.1.1.2;v-dc1-vasya
+Group;All_Linux_Servers;;All company Linux servers
+Group;System_Component-env;;The Component of the System
+Service;TCP_5432;TCP/5432;Postgres server port
+Service;TCP_3306;TCP/3306;MySQL server port
+ServiceGroup;Database_ports;TCP_5432,TCP_3306,MS-SQL-S;Group of different database ports
+SubGroup;System_Component-env_sub;Host_10.1.1.1,Host_10.1.1.2;
+SubGroup;All_Linux_Servers_sub;System_Component-env;
+Host;Host_10.1.1.4;10.1.1.4;v-dc2-vasya
