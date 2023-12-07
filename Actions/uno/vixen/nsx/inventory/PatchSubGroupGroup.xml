@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="PatchSubGroupGroup" result-type="string" api-version="6.0.0" id="8456ad80-e29b-4cfb-9bcb-9416d48ff466" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+  <param n="groupname" t="string"><![CDATA[]]></param>
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="value" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var nestedpaths = value.split(',');
+
+
+var operationUrl = "/policy/api/v1/infra/domains/default/groups/" + groupname;
+var requestType = "PATCH";
+var requestContentType = "application/json";
+var body = {
+    "expression" : [{
+        "resource_type" : "PathExpression",
+        "paths" : []
+    }]
+};
+
+
+
+var gen = Array();
+
+for(var q=0;q<nestedpaths.length;q++){
+    gen[q] = "/infra/domains/default/groups/" + nestedpaths[q];
+    System.log(gen[q]);
+};
+
+body.expression[0].paths = {};
+body.expression[0].paths = gen;
+
+
+var requestContent = JSON.stringify(body);
+
+System.log(requestContent);
+
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+
+return response;]]></script>
+</dunes-script-module>
