@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <package>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='00cc6ca6-adb4-4d03-858e-8317e23d68f2'&dunesName='Action'&name='GetSegmentDiscoveryProfileBindingMapsID'&category='uno.vixen.nsx']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='0142518c-f5bf-4039-967c-95a113a28f6e'&dunesName='Action'&name='GetAllServices'&category='uno.vixen.nsx.inventory']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='07d248b0-e541-43e1-b1fd-8907752fdb15'&dunesName='Action'&name='AssignIPtoDeviceInterface'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='1209be61-7db7-43ae-bc58-a740d40ec760'&dunesName='Action'&name='GetRoleID'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='1279ad28-536d-4fe3-8437-58819da0e02f'&dunesName='Action'&name='CreateInventoryHostGroup'&category='uno.vixen.nsx']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='1292db23-37bf-485b-afc9-2d0c8d879370'&dunesName='Action'&name='CreateSegmentIPDiscoveryBindingMap'&category='uno.vixen.nsx']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Workflow?id='1bae6feb-28f8-4bdc-ab38-e4fa8c03400f'&dunesName='Workflow']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='211d681d-e8c1-436e-a60b-df1a92bcbf1f'&dunesName='Action'&name='CreateSubGroup'&category='uno.vixen.nsx.inventory']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='2266053f-dcef-4b48-a990-9fd024383272'&dunesName='Action'&name='GetSiteID'&category='uno.vixen.netbox']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='26ea313a-48d4-469c-8149-724c6b4cbfcb'&dunesName='Action'&name='GetTransportZoneID'&category='uno.vixen.nsx']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='271be242-78b1-4b3c-8d4b-f8d78208f5ad'&dunesName='Action'&name='GetAllClusters'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='2d222514-8748-466f-8f79-624cc12d3bae'&dunesName='Action'&name='PatchServiceGroup'&category='uno.vixen.nsx.inventory']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='39d126b4-de28-46ef-bd0e-07599d096ae8'&dunesName='Action'&name='CreateOverlaySegment'&category='uno.vixen.nsx']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='3ac1af8e-06e9-4268-b8eb-cd9e14936cd9'&dunesName='Action'&name='SetVMPrimaryIP'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='3f7d7f3a-9659-4d74-b97d-227626890422'&dunesName='Action'&name='ParseCSVTemplateToJSON'&category='uno.vixen.nsx.inventory']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='4fd23788-9d22-49a2-a539-3ffee2a40833'&dunesName='Action'&name='AssignIPtoVMInterface'&category='uno.vixen.netbox']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='5a04b307-2cae-4fca-a5bb-53185c66da76'&dunesName='Action'&name='ChangeSegmentIPDiscoveryBindingMap'&category='uno.vixen.nsx']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='5df8a721-89b7-44ba-99f3-3d4136f17082'&dunesName='Action'&name='GetIPIDbyAddress'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='5ee4b930-f168-4027-a0ae-bf25ed70aa52'&dunesName='Action'&name='GetAllRoles'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Workflow?id='61908b01-68f6-4f96-bb77-c64737caa83a'&dunesName='Workflow']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='75f7f07b-0216-4c2a-842b-1deb8d1a484c'&dunesName='Action'&name='GetParentPrefixes'&category='uno.vixen.netbox']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='7c588175-422d-4d34-997b-d7c04e511410'&dunesName='Action'&name='GetParentPrefixeID'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='8456ad80-e29b-4cfb-9bcb-9416d48ff466'&dunesName='Action'&name='PatchSubGroupGroup'&category='uno.vixen.nsx.inventory']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='866c94da-dee6-4457-8cac-d89a466df7ae'&dunesName='Action'&name='GetAllVMs'&category='uno.vixen.netbox']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='8b8bb716-525d-4c9c-8c21-7fb447168405'&dunesName='Action'&name='ReservIPs'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='975575b0-c2fb-4611-b422-62991da7a9aa'&dunesName='Action'&name='GetClusterID'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='9a3af654-0cf9-4b39-8502-8fb315e12ae3'&dunesName='Action'&name='GetAllSites'&category='uno.vixen.netbox']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='9f222220-1a1a-49ee-a793-af435a7cd9e2'&dunesName='Action'&name='GetT1Routers'&category='uno.vixen.nsx']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='9f4a6eb1-b264-4ba9-a223-b75c89f757ee'&dunesName='Action'&name='GetDeviceID'&category='uno.vixen.netbox']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='a1427404-8bf4-4153-81cd-a5152a5b0848'&dunesName='Action'&name='CreateVLANSegment'&category='uno.vixen.nsx']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='a2d05ad8-a0eb-48b0-92be-44d7cab3d2a3'&dunesName='Action'&name='CreateDeviceInterface'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='adcc56bb-0196-43eb-b350-5ccb7faf43e4'&dunesName='Action'&name='CreateService'&category='uno.vixen.nsx.inventory']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='b382a36c-2e7f-477a-88ad-3bf88d35136d'&dunesName='Action'&name='CreateEmptyGroup'&category='uno.vixen.nsx.inventory']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='b51754f0-bf00-4e94-a192-8fb7f4ad28ab'&dunesName='Action'&name='GetIPDiscoveryProfiles'&category='uno.vixen.nsx']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='b5a46545-327e-49cb-a769-328a43faf9e4'&dunesName='Action'&name='CreateInventoryGroup'&category='uno.vixen.nsx']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='bdaa90a3-db9a-4537-b245-38283e7d058d'&dunesName='Action'&name='GetVMID'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Workflow?id='cd07cc35-3693-4e07-a3f8-7fe32c6b700a'&dunesName='Workflow']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='cd937fb7-c1aa-4e2f-84fb-025fc07350bc'&dunesName='Action'&name='AddVM'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='d344a20c-ab2a-4b7e-96f6-691947cac0a4'&dunesName='Action'&name='AddIPAddress'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='d36b7fa7-6d61-4535-8902-2b7c353beaa4'&dunesName='Action'&name='CreateVMInterface'&category='uno.vixen.netbox']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='d9222cb4-da93-4432-a1ef-a6c5c17c8f99'&dunesName='Action'&name='CreateServiceGroup'&category='uno.vixen.nsx.inventory']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='dc29e491-8e45-425b-816b-ec04e1ad25ab'&dunesName='Action'&name='AddPrefix'&category='uno.vixen.netbox']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='e24675da-06da-48b2-8ae4-e1e343df4a09'&dunesName='Action'&name='GetTransportZones'&category='uno.vixen.nsx']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='e393577c-0d08-429b-ae62-21c69d72b76b'&dunesName='Action'&name='GetAllGroups'&category='uno.vixen.nsx.inventory']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Workflow?id='f062b65e-e78d-41d5-977e-c6ee4d112c42'&dunesName='Workflow']]></elm>
 <elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='ffbd1096-e5af-4235-b4b0-9a2d96c30b32'&dunesName='Action'&name='CreateDFWRule'&category='uno.vixen.nsx']]></elm>
 <used-plugin name='REST' version='2.5.0' />
 </package>

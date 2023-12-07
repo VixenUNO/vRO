@@ -4,6 +4,7 @@
     <position y="-3.0" x="121.1764705882353"/>
     <input>
         <param name="CSV" type="MimeAttachment"/>
+        <param name="restHost" type="REST:RESTHost"/>
     </input>
     <output>
         <param name="actionResult" type="string"/>
@@ -25,9 +26,6 @@
     </attrib>
     <attrib name="AllServices" type="Array/string">
         <value encoded="n"/>
-    </attrib>
-    <attrib name="restHost" type="REST:RESTHost">
-        <value encoded="n">dunes://service.dunes.ch/CustomSDKObject?id='5f1cdc0b-51c7-4bf8-972a-608584e7beb6'&amp;dunesName='REST:RESTHost'</value>
     </attrib>
     <attrib name="AllGroups" type="Array/string">
         <value encoded="n"/>

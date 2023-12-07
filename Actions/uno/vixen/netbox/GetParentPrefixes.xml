@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="GetParentPrefixes" result-type="Array/string" api-version="6.0.0" id="75f7f07b-0216-4c2a-842b-1deb8d1a484c" version="0.0.0" category-name="uno.vixen.netbox">
+<dunes-script-module name="GetParentPrefixes" result-type="Array/string" api-version="6.0.0" id="75f7f07b-0216-4c2a-842b-1deb8d1a484c" version="1.0.0" category-name="uno.vixen.netbox">
   <param n="token" t="string"><![CDATA[]]></param>
   <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
-  <param n="depth" t="string"/>
+  <param n="depth" t="string"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[var operationUrl = ("/api/ipam/prefixes/?depth=" + depth);
 var requestType = "GET";
 var body = {};

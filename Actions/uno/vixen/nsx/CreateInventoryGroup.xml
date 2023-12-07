@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="CreateInventoryGroup" result-type="string" api-version="6.0.0" id="b5a46545-327e-49cb-a769-328a43faf9e4" version="0.0.0" category-name="uno.vixen.nsx">
+<dunes-script-module name="CreateInventoryGroup" result-type="string" api-version="6.0.0" id="b5a46545-327e-49cb-a769-328a43faf9e4" version="1.0.0" category-name="uno.vixen.nsx">
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="segmentname" t="string"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[var groupname = segmentname + "_SEG";

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="CreateDeviceInterface" result-type="string" api-version="6.0.0" id="a2d05ad8-a0eb-48b0-92be-44d7cab3d2a3" version="0.0.0" category-name="uno.vixen.netbox">
-  <param n="DeviceID" t="string"/>
-  <param n="token" t="string"/>
-  <param n="att_resthost" t="REST:RESTHost"/>
-  <param n="interfacename" t="string"/>
+<dunes-script-module name="CreateDeviceInterface" result-type="string" api-version="6.0.0" id="a2d05ad8-a0eb-48b0-92be-44d7cab3d2a3" version="1.0.0" category-name="uno.vixen.netbox">
+  <param n="DeviceID" t="string"><![CDATA[]]></param>
+  <param n="token" t="string"><![CDATA[]]></param>
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="interfacename" t="string"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[var operationUrl = ("/api/dcim/interfaces/");
 var requestType = "POST";
 var retrycount = 5;
