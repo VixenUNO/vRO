@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="AddPrefix" result-type="string" api-version="6.0.0" id="dc29e491-8e45-425b-816b-ec04e1ad25ab" version="1.0.0" category-name="uno.vixen.netbox">
+<dunes-script-module name="AddPrefix" result-type="string" api-version="6.0.0" id="dc29e491-8e45-425b-816b-ec04e1ad25ab" version="1.3.0" category-name="uno.vixen.netbox">
   <param n="token" t="string"><![CDATA[]]></param>
   <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="prefixsize" t="number"><![CDATA[]]></param>

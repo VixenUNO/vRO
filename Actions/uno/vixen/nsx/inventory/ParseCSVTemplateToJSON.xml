@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="ParseCSVTemplateToJSON" result-type="Array/Properties" api-version="6.0.0" id="3f7d7f3a-9659-4d74-b97d-227626890422" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+<dunes-script-module name="ParseCSVTemplateToJSON" result-type="Array/Properties" api-version="6.0.0" id="3f7d7f3a-9659-4d74-b97d-227626890422" version="0.3.0" category-name="uno.vixen.nsx.inventory">
   <param n="CSV" t="MimeAttachment"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[// System.log(CSV.name);
 

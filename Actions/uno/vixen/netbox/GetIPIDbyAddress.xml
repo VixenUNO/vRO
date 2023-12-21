@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="GetIPIDbyAddress" result-type="string" api-version="6.0.0" id="5df8a721-89b7-44ba-99f3-3d4136f17082" version="1.0.0" category-name="uno.vixen.netbox">
+<dunes-script-module name="GetIPIDbyAddress" result-type="string" api-version="6.0.0" id="5df8a721-89b7-44ba-99f3-3d4136f17082" version="1.3.0" category-name="uno.vixen.netbox">
   <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="token" t="string"><![CDATA[]]></param>
   <param n="ipwithmask" t="string"><![CDATA[]]></param>

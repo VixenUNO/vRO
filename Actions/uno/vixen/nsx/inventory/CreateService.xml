@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="CreateService" result-type="string" api-version="6.0.0" id="adcc56bb-0196-43eb-b350-5ccb7faf43e4" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+<dunes-script-module name="CreateService" result-type="string" api-version="6.0.0" id="adcc56bb-0196-43eb-b350-5ccb7faf43e4" version="0.3.0" category-name="uno.vixen.nsx.inventory">
   <param n="servicename" t="string"><![CDATA[]]></param>
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
-  <param n="servicedescription" t="string"/>
-  <param n="value" t="string"/>
-  <param n="revision" t="string"/>
+  <param n="servicedescription" t="string"><![CDATA[]]></param>
+  <param n="value" t="string"><![CDATA[]]></param>
+  <param n="revision" t="string"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[var protocol = value.substring(0, value.indexOf("/"));
 var port = value.substring(value.indexOf("/")+1,value.length);
 

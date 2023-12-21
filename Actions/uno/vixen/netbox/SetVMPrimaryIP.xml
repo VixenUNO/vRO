@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="SetVMPrimaryIP" result-type="string" api-version="6.0.0" id="3ac1af8e-06e9-4268-b8eb-cd9e14936cd9" version="0.0.0" category-name="uno.vixen.netbox">
+<dunes-script-module name="SetVMPrimaryIP" result-type="string" api-version="6.0.0" id="3ac1af8e-06e9-4268-b8eb-cd9e14936cd9" version="0.3.0" category-name="uno.vixen.netbox">
   <param n="vmid" t="string"><![CDATA[]]></param>
   <param n="ipid" t="string"><![CDATA[]]></param>
   <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>

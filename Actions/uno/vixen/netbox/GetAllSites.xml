@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="GetAllSites" result-type="Array/string" api-version="6.0.0" id="9a3af654-0cf9-4b39-8502-8fb315e12ae3" version="0.0.0" category-name="uno.vixen.netbox">
-  <param n="att_resthost" t="REST:RESTHost"/>
-  <param n="token" t="string"/>
+<dunes-script-module name="GetAllSites" result-type="Array/string" api-version="6.0.0" id="9a3af654-0cf9-4b39-8502-8fb315e12ae3" version="0.3.0" category-name="uno.vixen.netbox">
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="token" t="string"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[var operationUrl = ("/api/dcim/sites/");
 var requestType = "GET";
 var body = {};

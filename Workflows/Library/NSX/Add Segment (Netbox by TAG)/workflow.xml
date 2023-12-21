@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item10" object-name="workflow:name=generic" id="19724ce5-b7e6-4893-be19-c49ceeb156f3" version="0.3.0" api-version="6.0.0" allowed-operations="vef" editor-version="2.0" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Add Segment (Netbox by TAG)]]></display-name>
+  <position y="22.10526315789474" x="22.10526315789474"/>
+  <input>
+    <param name="vlanID" type="string"/>
+    <param name="SegmentType" type="string"/>
+    <param name="tag" type="string"/>
+    <param name="TransportZone" type="string"/>
+    <param name="NetPrefSize" type="number"/>
+    <param name="router" type="string"/>
+    <param name="segmentName" type="string"/>
+    <param name="parentprefix" type="string"/>
+    <param name="IPsToReserv" type="string"/>
+    <param name="IPDiscoveryProfile" type="string"/>
+  </input>
+  <attrib name="restHost" type="REST:RESTHost" read-only="false">
+    <value encoded="n"><![CDATA[dunes://service.dunes.ch/CustomSDKObject?id='5f1cdc0b-51c7-4bf8-972a-608584e7beb6'&dunesName='REST:RESTHost']]></value>
+    <description><![CDATA[Required NSX REST host from vRO]]></description>
+  </attrib>
+  <attrib name="transportzoneid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="cidr" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="netbox_token" type="string" read-only="false">
+    <value encoded="n"><![CDATA[3f640c4329eda41ed4fc4a3a710bbe4d3655c716]]></value>
+    <description><![CDATA[Required 
+Netbox TOKEN]]></description>
+  </attrib>
+  <attrib name="netbox_restHost" type="REST:RESTHost" read-only="false">
+    <value encoded="n"><![CDATA[dunes://service.dunes.ch/CustomSDKObject?id='2485c7b0-dd17-4ed0-acee-c8f4952b1767'&dunesName='REST:RESTHost']]></value>
+    <description><![CDATA[Required NetBox REST Host from vRO]]></description>
+  </attrib>
+  <attrib name="netbox_prefix_depth" type="string" read-only="false">
+    <value encoded="n"><![CDATA[0]]></value>
+    <description><![CDATA[Required String 
+Netbox prefix depth]]></description>
+  </attrib>
+  <attrib name="parentprefixid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="actionResult" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="currentprefixid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="AddPrefixOutput" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="currentprefix" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="netboxgwipid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="NetboxDeviceID" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="NetboxDeviceInterfaceName" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="NetboxDeviceInterfaceID" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="SegmentDiscoveryProfileBindingMapsID" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="tags" type="Array/string" read-only="false">
+    <value encoded="n"><![CDATA[[13:string#prefix,15:string#prefix-2]]]></value>
+    <description><![CDATA[List of NetBox tags]]></description>
+  </attrib>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <in-binding/>
+    <position y="148.42105263157896" x="443.1578947368422"/>
+  </workflow-item>
+  <workflow-item name="item1" type="end" end-mode="0">
+    <in-binding/>
+    <position y="211.57894736842107" x="169.47368421052633"/>
+  </workflow-item>
+  <workflow-item name="item2" out-name="item4" type="custom-condition" alt-out-name="item6">
+    <display-name><![CDATA[Decision]]></display-name>
+    <script encoded="false"><![CDATA[if(SegmentType == "VLAN"){
+    return true;
+} 
+if(SegmentType == "Overlay"){
+    return false;
+}]]></script>
+    <in-binding>
+      <bind name="SegmentType" type="string" export-name="SegmentType"/>
+    </in-binding>
+    <out-binding/>
+    <description><![CDATA[Custom decision based on a custom script.]]></description>
+    <position y="148.42105263157896" x="918.9473684210525"/>
+  </workflow-item>
+  <workflow-item name="item3" out-name="item0" type="task" script-module="uno.vixen.nsx/CreateVLANSegment">
+    <display-name><![CDATA[CreateVLANSegment]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateVLANSegment(restHost,segname,transportzoneid,vlanid,tag);
+]]></script>
+    <in-binding>
+      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+      <bind name="segname" type="string" export-name="segmentName"/>
+      <bind name="transportzoneid" type="string" export-name="transportzoneid"/>
+      <bind name="vlanid" type="string" export-name="vlanID"/>
+      <bind name="tag" type="string" export-name="tag"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name=""/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="158.42105263157896" x="508.42105263157896"/>
+  </workflow-item>
+  <workflow-item name="item4" out-name="item3" type="task" script-module="uno.vixen.nsx/GetTransportZoneID">
+    <display-name><![CDATA[GetTransportZoneID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").GetTransportZoneID(restHost,transportszone);
+]]></script>
+    <in-binding>
+      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+      <bind name="transportszone" type="string" export-name="TransportZone"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="transportzoneid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="158.42105263157896" x="771.5789473684212"/>
+  </workflow-item>
+  <workflow-item name="item5" out-name="item17" type="task" script-module="uno.vixen.nsx/CreateOverlaySegment">
+    <display-name><![CDATA[CreateOverlaySegment]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateOverlaySegment(restHost,segname,transportzoneid,t1router,tag,cidr);
+]]></script>
+    <in-binding>
+      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+      <bind name="segname" type="string" export-name="segmentName"/>
+      <bind name="transportzoneid" type="string" export-name="transportzoneid"/>
+      <bind name="t1router" type="string" export-name="router"/>
+      <bind name="tag" type="string" export-name="tag"/>
+      <bind name="cidr" type="string" export-name="cidr"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name=""/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="221.57894736842107" x="782.1052631578948"/>
+  </workflow-item>
+  <workflow-item name="item6" out-name="item5" type="task" script-module="uno.vixen.nsx/GetTransportZoneID">
+    <display-name><![CDATA[GetTransportZoneID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").GetTransportZoneID(restHost,transportszone);
+]]></script>
+    <in-binding>
+      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+      <bind name="transportszone" type="string" export-name="TransportZone"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="transportzoneid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="221.57894736842107" x="918.9473684210525"/>
+  </workflow-item>
+  <workflow-item name="item7" out-name="item8" type="task" script-module="uno.vixen.nsx/CreateInventoryGroup">
+    <display-name><![CDATA[CreateInventoryGroup]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateInventoryGroup(restHost,segmentname);
+]]></script>
+    <in-binding>
+      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+      <bind name="segmentname" type="string" export-name="segmentName"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name=""/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="221.57894736842107" x="361.0526315789474"/>
+  </workflow-item>
+  <workflow-item name="item8" out-name="item1" type="task" script-module="uno.vixen.nsx/CreateDFWRule">
+    <display-name><![CDATA[CreateDFWRule]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateDFWRule(restHost,segmentname);
+]]></script>
+    <in-binding>
+      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+      <bind name="segmentname" type="string" export-name="segmentName"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="actionResult"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="221.57894736842107" x="234.73684210526318"/>
+  </workflow-item>
+  <workflow-item name="item9" out-name="item11" type="task" script-module="uno.vixen.netbox/AddPrefix">
+    <display-name><![CDATA[AddPrefix]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").AddPrefix(token,att_resthost,prefixsize,parentprefixid);
+]]></script>
+    <in-binding>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost"/>
+      <bind name="prefixsize" type="number" export-name="NetPrefSize"/>
+      <bind name="parentprefixid" type="string" export-name="parentprefixid"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="AddPrefixOutput"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="32.10526315789474" x="182.10526315789474"/>
+  </workflow-item>
+  <workflow-item name="item10" out-name="item9" type="task" script-module="uno.vixen.netbox/GetParentPrefixeID">
+    <display-name><![CDATA[GetParentPrefixeID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetParentPrefixeID(token,att_resthost,prefix);
+]]></script>
+    <in-binding>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost"/>
+      <bind name="prefix" type="string" export-name="parentprefix"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="parentprefixid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="32.10526315789474" x="82.10526315789474"/>
+  </workflow-item>
+  <workflow-item name="item11" out-name="item12" type="task">
+    <display-name><![CDATA[Parse Additional parameters]]></display-name>
+    <script encoded="false"><![CDATA[var str = JSON.parse(AddPrefixOutput);
+
+
+var prevsymb = str.prefix.substring(str.prefix.indexOf("/")-2, str.prefix.indexOf("/")-1);
+
+System.log(prevsymb);
+
+if(prevsymb == "."){
+    var temp = str.prefix.substring(str.prefix.indexOf("/")-1, str.prefix.indexOf("/"));
+    var last = Number(temp)+1;
+    var cidrip = str.prefix.substring(0, str.prefix.indexOf("/")-1) + last;
+}else{
+    var temp = str.prefix.substring(str.prefix.indexOf("/")-2, str.prefix.indexOf("/"));
+    var last = Number(temp)+1;
+    var cidrip = str.prefix.substring(0, str.prefix.indexOf("/")-2) + last;
+}
+
+
+cidr = cidrip + "/" + NetPrefSize;
+currentprefixid = str.id;
+currentprefix = str.prefix;
+NetboxDeviceInterfaceName = segmentName + "_GW";
+
+
+System.log(cidrip);
+System.log(cidr);
+System.log(currentprefix);]]></script>
+    <in-binding>
+      <bind name="AddPrefixOutput" type="string" export-name="AddPrefixOutput"/>
+      <bind name="NetPrefSize" type="number" export-name="NetPrefSize"/>
+      <bind name="segmentName" type="string" export-name="segmentName"/>
+    </in-binding>
+    <out-binding>
+      <bind name="currentprefixid" type="string" export-name="currentprefixid"/>
+      <bind name="cidr" type="string" export-name="cidr"/>
+      <bind name="currentprefix" type="string" export-name="currentprefix"/>
+      <bind name="NetboxDeviceInterfaceName" type="string" export-name="NetboxDeviceInterfaceName"/>
+    </out-binding>
+    <description><![CDATA[Simple task with custom script capability.]]></description>
+    <position y="32.10526315789474" x="297.89473684210526"/>
+  </workflow-item>
+  <workflow-item name="item12" out-name="item13" type="task" script-module="uno.vixen.netbox/ReservIPs">
+    <display-name><![CDATA[ReservIPs]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").ReservIPs(cidr,NetPrefSize,att_resthost,token,IPsToReserv);
+]]></script>
+    <in-binding>
+      <bind name="cidr" type="string" export-name="cidr"/>
+      <bind name="NetPrefSize" type="number" export-name="NetPrefSize"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost"/>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="IPsToReserv" type="string" export-name="IPsToReserv"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="actionResult"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="32.10526315789474" x="424.2105263157895"/>
+  </workflow-item>
+  <workflow-item name="item13" out-name="item14" type="task" script-module="uno.vixen.netbox/GetIPIDbyAddress">
+    <display-name><![CDATA[GetIPIDbyAddress]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetIPIDbyAddress(att_resthost,token,ipwithmask);
+]]></script>
+    <in-binding>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost"/>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="ipwithmask" type="string" export-name="cidr"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="netboxgwipid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="32.10526315789474" x="529.4736842105264"/>
+  </workflow-item>
+  <workflow-item name="item14" out-name="item16" type="task" script-module="uno.vixen.netbox/GetDeviceID">
+    <display-name><![CDATA[GetDeviceID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetDeviceID(devicename,token,att_resthost);
+]]></script>
+    <in-binding>
+      <bind name="devicename" type="string" export-name="router"/>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="NetboxDeviceID"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="32.10526315789474" x="634.7368421052632"/>
+  </workflow-item>
+  <workflow-item name="item15" out-name="item2" type="task" script-module="uno.vixen.netbox/AssignIPtoDeviceInterface">
+    <display-name><![CDATA[AssignIPtoDeviceInterface]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").AssignIPtoDeviceInterface(ipid,att_resthost,token,deviceid);
+]]></script>
+    <in-binding>
+      <bind name="ipid" type="string" export-name="netboxgwipid"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost"/>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="deviceid" type="string" export-name="NetboxDeviceInterfaceID"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="actionResult"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="32.10526315789474" x="908.421052631579"/>
+  </workflow-item>
+  <workflow-item name="item16" out-name="item15" type="task" script-module="uno.vixen.netbox/CreateDeviceInterface">
+    <display-name><![CDATA[CreateDeviceInterface]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").CreateDeviceInterface(DeviceID,token,att_resthost,interfacename);
+]]></script>
+    <in-binding>
+      <bind name="DeviceID" type="string" export-name="NetboxDeviceID"/>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_restHost"/>
+      <bind name="interfacename" type="string" export-name="NetboxDeviceInterfaceName"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="NetboxDeviceInterfaceID"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="32.10526315789474" x="761.0526315789474"/>
+  </workflow-item>
+  <workflow-item name="item17" out-name="item7" type="task" script-module="uno.vixen.nsx/CreateSegmentIPDiscoveryBindingMap">
+    <display-name><![CDATA[CreateSegmentIPDiscoveryBindingMap]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.nsx").CreateSegmentIPDiscoveryBindingMap(segmentname,restHost,profileid);
+]]></script>
+    <in-binding>
+      <bind name="segmentname" type="string" export-name="segmentName"/>
+      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+      <bind name="profileid" type="string" export-name="IPDiscoveryProfile"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="actionResult"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="221.57894736842107" x="571.578947368421"/>
+  </workflow-item>
+  <presentation/>
+</workflow>

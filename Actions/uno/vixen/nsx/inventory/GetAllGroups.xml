@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="GetAllGroups" result-type="Array/string" api-version="6.0.0" id="e393577c-0d08-429b-ae62-21c69d72b76b" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+<dunes-script-module name="GetAllGroups" result-type="Array/string" api-version="6.0.0" id="e393577c-0d08-429b-ae62-21c69d72b76b" version="0.3.0" category-name="uno.vixen.nsx.inventory">
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
-  <script encoded="false"><![CDATA[var operationUrl = "/policy/api/v1/infra/domains/default/groups";
+  <script encoded="false"><![CDATA[// ?page_size=1&cursor=00040002
+
+var operationUrl = "/policy/api/v1/infra/domains/default/groups?page_size=1";
 var requestType = "GET";
 var requestContent = "";
 var requestContentType = "application/json";
 
-System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+//System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
 
 var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
 request.contentType = requestContentType;
@@ -16,18 +18,40 @@ var response = request.execute();
 // System.log("response: " + response.contentAsString);
 var str = JSON.parse(response.contentAsString);
 var numofelements = str.result_count;
-var countto = numofelements - 1; 
-// System.log("Count To" + countto);
-// System.log("tz" + str.results[1].display_name);
+var iteration = Math.ceil(numofelements / 100);
+
+System.log("Number of elements - " + numofelements);
+System.log("Iterations required - " + Math.ceil(numofelements / 100));
 // System.log("str" + JSON.stringify(str));
 
 var result = Array();
 
-for (i = 0; i <= countto; i++) {
 
-    result.push(str.results[i].display_name);
+for (q = 0; q < iteration; q++) {
+    var cursor = 40000 + 100 * q;
+    var operationUrl = "/policy/api/v1/infra/domains/default/groups?page_size=100&cursor=000" + cursor;
+    System.log(operationUrl);
+    var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+    var response = request.execute();
+    var str = JSON.parse(response.contentAsString);
+    var countto = Object.keys(str.results).length - 1;
+
+System.log("Elements in iteration " + Object.keys(str.results).length);
+
+
+    for (i = 0; i <= countto; i++) {
+
+        result.push(str.results[i].display_name);
+
+    }
 
 }
+
+
+
+
+
 
 return result;]]></script>
 </dunes-script-module>

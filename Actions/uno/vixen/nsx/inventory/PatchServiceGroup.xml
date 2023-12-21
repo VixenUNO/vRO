@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="PatchServiceGroup" result-type="string" api-version="6.0.0" id="2d222514-8748-466f-8f79-624cc12d3bae" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+<dunes-script-module name="PatchServiceGroup" result-type="string" api-version="6.0.0" id="2d222514-8748-466f-8f79-624cc12d3bae" version="0.3.0" category-name="uno.vixen.nsx.inventory">
   <param n="servicename" t="string"><![CDATA[]]></param>
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="value" t="string"><![CDATA[]]></param>

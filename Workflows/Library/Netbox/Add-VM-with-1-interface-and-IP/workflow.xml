@@ -1,253 +1,193 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item6" object-name="workflow:name=generic" id="61908b01-68f6-4f96-bb77-c64737caa83a" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
-    <display-name>Add-VM-with-1-interface-and-IP</display-name>
-    <position y="10.0" x="50.0"/>
-    <input>
-        <param name="VMName" type="string"/>
-        <param name="SiteName" type="string"/>
-        <param name="IPWithMask" type="string"/>
-        <param name="Role" type="string"/>
-        <param name="Cluster" type="string"/>
-    </input>
-    <output>
-        <param name="actionResult" type="string"/>
-    </output>
-    <attrib name="att_resthost" type="REST:RESTHost">
-        <value encoded="n">dunes://service.dunes.ch/CustomSDKObject?id='2485c7b0-dd17-4ed0-acee-c8f4952b1767'&amp;dunesName='REST:RESTHost'</value>
-    </attrib>
-    <attrib name="token" type="string">
-        <value encoded="n">3f640c4329eda41ed4fc4a3a710bbe4d3655c716</value>
-    </attrib>
-    <attrib name="vmid" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <attrib name="interfaceid" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <attrib name="siteid" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <attrib name="interfacename" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <attrib name="ipid" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <attrib name="roleid" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <attrib name="clusterid" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
-        <in-binding/>
-        <out-binding/>
-        <position y="10.0" x="1350.0"/>
-    </workflow-item>
-    <workflow-item name="item1" out-name="item3" type="task" script-module="uno.vixen.netbox/AddVM" comparator="0">
-        <display-name>AddVM</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+<?xml version='1.0' encoding='UTF-8'?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item6" object-name="workflow:name=generic" id="61908b01-68f6-4f96-bb77-c64737caa83a" version="0.3.0" api-version="6.0.0" editor-version="2.0" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Add-VM-with-1-interface-and-IP]]></display-name>
+  <position y="10.0" x="50.0"/>
+  <input>
+    <param name="VMName" type="string"/>
+    <param name="SiteName" type="string"/>
+    <param name="IPWithMask" type="string"/>
+    <param name="Role" type="string"/>
+    <param name="Cluster" type="string"/>
+  </input>
+  <output>
+    <param name="actionResult" type="string"/>
+  </output>
+  <attrib name="att_resthost" type="REST:RESTHost" read-only="false">
+    <value encoded="n"><![CDATA[dunes://service.dunes.ch/CustomSDKObject?id='2485c7b0-dd17-4ed0-acee-c8f4952b1767'&dunesName='REST:RESTHost']]></value>
+  </attrib>
+  <attrib name="token" type="string" read-only="false">
+    <value encoded="n"><![CDATA[3f640c4329eda41ed4fc4a3a710bbe4d3655c716]]></value>
+  </attrib>
+  <attrib name="vmid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="interfaceid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="siteid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="interfacename" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="ipid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="roleid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="clusterid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <in-binding/>
+    <position y="10.0" x="1350.0"/>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item3" type="task" script-module="uno.vixen.netbox/AddVM">
+    <display-name><![CDATA[AddVM]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").AddVM(att_resthost,token,vmname,siteid,roleid,clusterid);
-</script>
-        <in-binding>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-            <bind name="vmname" type="string" export-name="VMName">
-                <description></description>
-            </bind>
-            <bind name="siteid" type="string" export-name="siteid">
-                <description></description>
-            </bind>
-            <bind name="roleid" type="string" export-name="roleid">
-                <description></description>
-            </bind>
-            <bind name="clusterid" type="string" export-name="clusterid">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="vmid"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="660.0"/>
-    </workflow-item>
-    <workflow-item name="item2" out-name="item8" type="task" script-module="uno.vixen.netbox/GetSiteID" comparator="0">
-        <display-name>GetSiteID</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+]]></script>
+    <in-binding>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="token" type="string" export-name="token"/>
+      <bind name="vmname" type="string" export-name="VMName"/>
+      <bind name="siteid" type="string" export-name="siteid"/>
+      <bind name="roleid" type="string" export-name="roleid"/>
+      <bind name="clusterid" type="string" export-name="clusterid"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="vmid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="660.0"/>
+  </workflow-item>
+  <workflow-item name="item2" out-name="item8" type="task" script-module="uno.vixen.netbox/GetSiteID">
+    <display-name><![CDATA[GetSiteID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").GetSiteID(att_resthost,token,sitename);
-</script>
-        <in-binding>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-            <bind name="sitename" type="string" export-name="SiteName">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="siteid"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="270.0"/>
-    </workflow-item>
-    <workflow-item name="item3" out-name="item4" type="task" script-module="uno.vixen.netbox/CreateVMInterface" comparator="0">
-        <display-name>CreateVMInterface</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+]]></script>
+    <in-binding>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="token" type="string" export-name="token"/>
+      <bind name="sitename" type="string" export-name="SiteName"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="siteid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="270.0"/>
+  </workflow-item>
+  <workflow-item name="item3" out-name="item4" type="task" script-module="uno.vixen.netbox/CreateVMInterface">
+    <display-name><![CDATA[CreateVMInterface]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").CreateVMInterface(VMID,token,att_resthost,interfacename);
-</script>
-        <in-binding>
-            <bind name="VMID" type="string" export-name="vmid">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="interfacename" type="string" export-name="interfacename">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="interfaceid"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="790.0"/>
-    </workflow-item>
-    <workflow-item name="item4" out-name="item5" type="task" script-module="uno.vixen.netbox/AddIPAddress" comparator="0">
-        <display-name>AddIPAddress</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+]]></script>
+    <in-binding>
+      <bind name="VMID" type="string" export-name="vmid"/>
+      <bind name="token" type="string" export-name="token"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="interfacename" type="string" export-name="interfacename"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="interfaceid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="790.0"/>
+  </workflow-item>
+  <workflow-item name="item4" out-name="item5" type="task" script-module="uno.vixen.netbox/AddIPAddress">
+    <display-name><![CDATA[AddIPAddress]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").AddIPAddress(ipwithmask,att_resthost,token);
-</script>
-        <in-binding>
-            <bind name="ipwithmask" type="string" export-name="IPWithMask">
-                <description></description>
-            </bind>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="ipid"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="920.0"/>
-    </workflow-item>
-    <workflow-item name="item5" out-name="item7" type="task" script-module="uno.vixen.netbox/AssignIPtoVMInterface" comparator="0">
-        <display-name>AssignIPtoVMInterface</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+]]></script>
+    <in-binding>
+      <bind name="ipwithmask" type="string" export-name="IPWithMask"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="token" type="string" export-name="token"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="ipid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="920.0"/>
+  </workflow-item>
+  <workflow-item name="item5" out-name="item7" type="task" script-module="uno.vixen.netbox/AssignIPtoVMInterface">
+    <display-name><![CDATA[AssignIPtoVMInterface]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").AssignIPtoVMInterface(ipid,att_resthost,token,vmid);
-</script>
-        <in-binding>
-            <bind name="ipid" type="string" export-name="ipid">
-                <description></description>
-            </bind>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-            <bind name="vmid" type="string" export-name="interfaceid">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="actionResult"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="1050.0"/>
-    </workflow-item>
-    <workflow-item name="item6" out-name="item2" type="task" comparator="0">
-        <display-name>Generate Interface name</display-name>
-        <script encoded="false">interfacename = VMName + " Network Interface 1";</script>
-        <in-binding>
-            <bind name="VMName" type="string" export-name="VMName"/>
-        </in-binding>
-        <out-binding>
-            <bind name="interfacename" type="string" export-name="interfacename"/>
-        </out-binding>
-        <description>Simple task with custom script capability.</description>
-        <position y="20.0" x="140.0"/>
-    </workflow-item>
-    <workflow-item name="item7" out-name="item0" type="task" script-module="uno.vixen.netbox/SetVMPrimaryIP" comparator="0">
-        <display-name>SetVMPrimaryIP</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+]]></script>
+    <in-binding>
+      <bind name="ipid" type="string" export-name="ipid"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="token" type="string" export-name="token"/>
+      <bind name="vmid" type="string" export-name="interfaceid"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="actionResult"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="1050.0"/>
+  </workflow-item>
+  <workflow-item name="item6" out-name="item2" type="task">
+    <display-name><![CDATA[Generate Interface name]]></display-name>
+    <script encoded="false"><![CDATA[interfacename = VMName + " Network Interface 1";]]></script>
+    <in-binding>
+      <bind name="VMName" type="string" export-name="VMName"/>
+    </in-binding>
+    <out-binding>
+      <bind name="interfacename" type="string" export-name="interfacename"/>
+    </out-binding>
+    <description><![CDATA[Simple task with custom script capability.]]></description>
+    <position y="20.0" x="140.0"/>
+  </workflow-item>
+  <workflow-item name="item7" out-name="item0" type="task" script-module="uno.vixen.netbox/SetVMPrimaryIP">
+    <display-name><![CDATA[SetVMPrimaryIP]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").SetVMPrimaryIP(vmid,ipid,att_resthost,token);
-</script>
-        <in-binding>
-            <bind name="vmid" type="string" export-name="vmid">
-                <description></description>
-            </bind>
-            <bind name="ipid" type="string" export-name="ipid">
-                <description></description>
-            </bind>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="actionResult"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="1180.0"/>
-    </workflow-item>
-    <workflow-item name="item8" out-name="item9" type="task" script-module="uno.vixen.netbox/GetRoleID" comparator="0">
-        <display-name>GetRoleID</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+]]></script>
+    <in-binding>
+      <bind name="vmid" type="string" export-name="vmid"/>
+      <bind name="ipid" type="string" export-name="ipid"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="token" type="string" export-name="token"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="actionResult"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="1180.0"/>
+  </workflow-item>
+  <workflow-item name="item8" out-name="item9" type="task" script-module="uno.vixen.netbox/GetRoleID">
+    <display-name><![CDATA[GetRoleID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").GetRoleID(att_resthost,token,rolename);
-</script>
-        <in-binding>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-            <bind name="rolename" type="string" export-name="Role">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="roleid"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="400.0"/>
-    </workflow-item>
-    <workflow-item name="item9" out-name="item1" type="task" script-module="uno.vixen.netbox/GetClusterID" comparator="0">
-        <display-name>GetClusterID</display-name>
-        <script encoded="false">//Auto generated script, cannot be modified !
+]]></script>
+    <in-binding>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="token" type="string" export-name="token"/>
+      <bind name="rolename" type="string" export-name="Role"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="roleid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="400.0"/>
+  </workflow-item>
+  <workflow-item name="item9" out-name="item1" type="task" script-module="uno.vixen.netbox/GetClusterID">
+    <display-name><![CDATA[GetClusterID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.netbox").GetClusterID(att_resthost,token,clustername);
-</script>
-        <in-binding>
-            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
-                <description></description>
-            </bind>
-            <bind name="token" type="string" export-name="token">
-                <description></description>
-            </bind>
-            <bind name="clustername" type="string" export-name="Cluster">
-                <description></description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="clusterid"/>
-        </out-binding>
-        <description>Add a note to the workflow schema.</description>
-        <position y="20.0" x="530.0"/>
-    </workflow-item>
-</ns2:workflow>
+]]></script>
+    <in-binding>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost"/>
+      <bind name="token" type="string" export-name="token"/>
+      <bind name="clustername" type="string" export-name="Cluster"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="clusterid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="20.0" x="530.0"/>
+  </workflow-item>
+  <presentation/>
+</workflow>

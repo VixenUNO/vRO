@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="PatchSubGroupGroup" result-type="string" api-version="6.0.0" id="8456ad80-e29b-4cfb-9bcb-9416d48ff466" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+<dunes-script-module name="PatchSubGroupGroup" result-type="string" api-version="6.0.0" id="8456ad80-e29b-4cfb-9bcb-9416d48ff466" version="0.3.0" category-name="uno.vixen.nsx.inventory">
   <param n="groupname" t="string"><![CDATA[]]></param>
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="value" t="string"><![CDATA[]]></param>

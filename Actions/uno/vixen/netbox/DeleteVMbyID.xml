@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="DeleteVMbyID" result-type="string" api-version="6.0.0" id="aebe4d6f-fd91-4c73-8147-bf5c2d01e492" version="1.3.0" category-name="uno.vixen.netbox">
+  <param n="token" t="string"><![CDATA[]]></param>
+  <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="vmid" t="string"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var operationUrl = ("/api/virtualization/virtual-machines/");
+var requestType = "DELETE";
+var retrycount = 5;
+
+var body = Array();
+
+body[0] = {
+        "id": vmid
+};
+
+var requestContent = JSON.stringify(body);
+
+System.log(requestContent);
+
+var requestContentType = "application/json";
+var request = att_resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization", "Token " + token);
+System.log(request.headers);
+for (var i = 1; i < retrycount + 1; i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+return strresponse;]]></script>
+</dunes-script-module>

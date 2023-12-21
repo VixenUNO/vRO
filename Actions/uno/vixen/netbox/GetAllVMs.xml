@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="GetAllVMs" result-type="Array/string" api-version="6.0.0" id="866c94da-dee6-4457-8cac-d89a466df7ae" version="0.0.0" category-name="uno.vixen.netbox">
+<dunes-script-module name="GetAllVMs" result-type="Array/string" api-version="6.0.0" id="866c94da-dee6-4457-8cac-d89a466df7ae" version="0.3.0" category-name="uno.vixen.netbox">
   <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="token" t="string"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[var operationUrl = ("/api/virtualization/virtual-machines/");

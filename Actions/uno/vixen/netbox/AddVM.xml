@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="AddVM" result-type="string" api-version="6.0.0" id="cd937fb7-c1aa-4e2f-84fb-025fc07350bc" version="0.0.0" category-name="uno.vixen.netbox">
+<dunes-script-module name="AddVM" result-type="string" api-version="6.0.0" id="cd937fb7-c1aa-4e2f-84fb-025fc07350bc" version="0.3.0" category-name="uno.vixen.netbox">
   <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="token" t="string"><![CDATA[]]></param>
   <param n="vmname" t="string"><![CDATA[]]></param>
   <param n="siteid" t="string"><![CDATA[]]></param>
-  <param n="roleid" t="string"/>
-  <param n="clusterid" t="string"/>
+  <param n="roleid" t="string"><![CDATA[]]></param>
+  <param n="clusterid" t="string"><![CDATA[]]></param>
   <script encoded="false"><![CDATA[var operationUrl = ("/api/virtualization/virtual-machines/");
 var requestType = "POST";
 var retrycount = 5;

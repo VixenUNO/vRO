@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="80b308f1-84ec-43a3-bf34-6bdee240e78b" version="0.1.0" api-version="6.0.0" editor-version="2.0" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Delete-VM-by-NAME]]></display-name>
+  <position y="50.0" x="100.0"/>
+  <input>
+    <param name="VMName" type="string"/>
+  </input>
+  <attrib name="netbox_token" type="string" read-only="false">
+    <value encoded="n"><![CDATA[3f640c4329eda41ed4fc4a3a710bbe4d3655c716]]></value>
+  </attrib>
+  <attrib name="netbox_resthost" type="REST:RESTHost" read-only="false">
+    <value encoded="n"><![CDATA[dunes://service.dunes.ch/CustomSDKObject?id='2485c7b0-dd17-4ed0-acee-c8f4952b1767'&dunesName='REST:RESTHost']]></value>
+  </attrib>
+  <attrib name="vmid" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <attrib name="actionResult" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <in-binding/>
+    <position y="50.0" x="520.0"/>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item2" type="task" script-module="uno.vixen.netbox/GetVMID">
+    <display-name><![CDATA[GetVMID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetVMID(att_resthost,token,vmname);
+]]></script>
+    <in-binding>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_resthost"/>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="vmname" type="string" export-name="VMName"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="vmid"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="60.0" x="170.0"/>
+  </workflow-item>
+  <workflow-item name="item2" out-name="item0" type="task" script-module="uno.vixen.netbox/DeleteVMbyID">
+    <display-name><![CDATA[DeleteVMbyID]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").DeleteVMbyID(token,att_resthost,vmid);
+]]></script>
+    <in-binding>
+      <bind name="token" type="string" export-name="netbox_token"/>
+      <bind name="att_resthost" type="REST:RESTHost" export-name="netbox_resthost"/>
+      <bind name="vmid" type="string" export-name="vmid"/>
+    </in-binding>
+    <out-binding>
+      <bind name="actionResult" type="string" export-name="actionResult"/>
+    </out-binding>
+    <description><![CDATA[Add a note to the workflow schema.]]></description>
+    <position y="60.0" x="320.0"/>
+  </workflow-item>
+  <presentation/>
+</workflow>

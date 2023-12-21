@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="CreateSegmentIPDiscoveryBindingMap" result-type="string" api-version="6.0.0" id="1292db23-37bf-485b-afc9-2d0c8d879370" version="1.0.0" category-name="uno.vixen.nsx">
+<dunes-script-module name="CreateSegmentIPDiscoveryBindingMap" result-type="string" api-version="6.0.0" id="1292db23-37bf-485b-afc9-2d0c8d879370" version="1.3.0" category-name="uno.vixen.nsx">
   <param n="segmentname" t="string"><![CDATA[]]></param>
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="profileid" t="string"><![CDATA[]]></param>

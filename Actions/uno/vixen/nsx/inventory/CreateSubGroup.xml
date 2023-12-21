@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<dunes-script-module name="CreateSubGroup" result-type="string" api-version="6.0.0" id="211d681d-e8c1-436e-a60b-df1a92bcbf1f" version="0.0.0" category-name="uno.vixen.nsx.inventory">
+<dunes-script-module name="CreateSubGroup" result-type="string" api-version="6.0.0" id="211d681d-e8c1-436e-a60b-df1a92bcbf1f" version="0.3.0" category-name="uno.vixen.nsx.inventory">
   <param n="groupname" t="string"><![CDATA[]]></param>
   <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="description" t="string"><![CDATA[]]></param>
