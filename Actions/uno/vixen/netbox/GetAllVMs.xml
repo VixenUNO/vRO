@@ -35,15 +35,14 @@ for (var i=1;i<retrycount+1;i++) {
 var str = JSON.parse(response.contentAsString);
 var numofelements = str.count;
 var countto = numofelements - 1; 
-//System.log("Count To" + countto);
-//System.log("tz" + str.results[1].prefix);
+System.log("Count to - " + countto);
 // System.log("str" + JSON.stringify(str));
 
 var result = Array();
 
-for (i = 0; i <= countto; i++) {
+for (i = 0; i <= countto-1; i++) {
 
-
+System.log(i + " - " + str.results[i].name);
 
     result.push(str.results[i].name);
 

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="CreateNetworkProfileInVRA" result-type="string" api-version="6.0.0" id="617e73cb-a99a-4f3c-b802-e1343e062656" version="0.0.0" category-name="uno.vixen.vra">
+  <param n="resthost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="description" t="string"/>
+  <param n="regionId" t="string"/>
+  <param n="name" t="string"/>
+  <param n="token" t="string"/>
+  <script encoded="false"><![CDATA[var operationUrl = ("/iaas/api/network-profiles");
+var requestType = "POST";
+var retrycount = 5;
+
+var body = {
+    "description": description,
+    "regionId": regionId,
+    "name": name
+};
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Bearer " + token);
+System.log(request.headers);
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+var str = JSON.parse(response.contentAsString);
+
+var link = str._links.self.href;
+
+return link;]]></script>
+</dunes-script-module>

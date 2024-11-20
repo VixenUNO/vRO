@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='0285fbe4-9c88-4706-9c9e-36e62ed2603f'&dunesName='Action'&name='GetAllZones'&category='uno.vixen.vra']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='1d54c10f-1ee0-4898-8358-2efd3a872625'&dunesName='Action'&name='GetAllNetworksFromVRA'&category='uno.vixen.vra']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Workflow?id='40edb748-69db-49a0-a0d9-c7c5999dc3d6'&dunesName='Workflow']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='617e73cb-a99a-4f3c-b802-e1343e062656'&dunesName='Action'&name='CreateNetworkProfileInVRA'&category='uno.vixen.vra']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/ConfigurationElement?id='6e2168e8-697b-4cda-a9be-d93f9b8073c9'&dunesName='ConfigurationElement']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='c39faf0f-7bfa-4e17-8a08-a8c61911695f'&dunesName='Action'&name='GetAllCloudRegions'&category='uno.vixen.vra']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='d9e3b9b3-19e4-4423-9882-63fb6a937042'&dunesName='Action'&name='CreateIPRange'&category='uno.vixen.vra']]></elm>
+<elm src-category='null'><![CDATA[dunes://service.dunes.ch/Action?id='ec5d47bd-f1d2-443c-b358-d97c13c3c354'&dunesName='Action'&name='GetToken'&category='uno.vixen.vra']]></elm>
+<used-plugin name='REST' version='2.5.0' />
+<used-plugin name='VRA' version='8.11.2' />
+</package>

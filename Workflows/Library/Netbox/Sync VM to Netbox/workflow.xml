@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="b149078d-dc3c-4612-b735-7243694260f7" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
-    <display-name>Sync VM from ResourcePool to Netbox</display-name>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="1891fb0e-8c78-4025-9a35-75457605fbd5" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Sync VM to Netbox</display-name>
     <position y="50.0" x="100.0"/>
     <input>
-        <param name="resourcePool" type="VC:ResourcePool"/>
+        <param name="vm" type="VC:VirtualMachine">
+            <description>Virtual machine from which to extract information</description>
+        </param>
     </input>
     <output/>
-    <attrib name="token" type="string" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="token"/>
-    <attrib name="allVMs" type="Array/VC:VirtualMachine">
-        <value encoded="n">[]</value>
-    </attrib>
-    <attrib name="vmCount" type="number">
-        <value encoded="n"/>
-    </attrib>
-    <attrib name="CurrentVM" type="VC:VirtualMachine">
-        <value encoded="n"/>
-    </attrib>
-    <attrib name="VMIP" type="string">
-        <value encoded="n"></value>
-    </attrib>
-    <attrib name="NETBoxRest" type="REST:RESTHost" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="restHost"/>
-    <attrib name="vmnumber" type="number">
-        <value encoded="n">0.0</value>
-    </attrib>
     <attrib name="folderName" type="string">
         <value encoded="n"></value>
         <description>Virtual machine folder name</description>
@@ -95,7 +80,7 @@
         <value encoded="n"/>
         <description>Host</description>
     </attrib>
-    <attrib name="resourcePool_1" type="VC:ResourcePool">
+    <attrib name="resourcePool" type="VC:ResourcePool">
         <value encoded="n"/>
         <description>Resource Pool</description>
     </attrib>
@@ -111,76 +96,25 @@
         <value encoded="n"/>
         <description>Array of datastores</description>
     </attrib>
-    <workflow-item name="item1" out-name="item3" type="task" comparator="0">
-        <display-name>Get All VMs from Resource Pool</display-name>
-        <script encoded="false">allVMs = resourcePool.vm;
-
-vmCount = allVMs.length;</script>
-        <in-binding>
-            <bind name="resourcePool" type="VC:ResourcePool" export-name="resourcePool"/>
-        </in-binding>
-        <out-binding>
-            <bind name="allVMs" type="Array/VC:VirtualMachine" export-name="allVMs"/>
-            <bind name="vmCount" type="number" export-name="vmCount"/>
-        </out-binding>
-        <description>Simple task with custom script capability.</description>
-        <position y="60.0" x="200.0"/>
-    </workflow-item>
-    <workflow-item name="item2" type="end" end-mode="0" comparator="0">
+    <attrib name="att_resthost" type="REST:RESTHost" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="restHost">
+        <description></description>
+    </attrib>
+    <attrib name="token" type="string" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="token">
+        <description></description>
+    </attrib>
+    <attrib name="AllVMs" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
         <in-binding/>
         <out-binding/>
-        <position y="0.0" x="400.0"/>
+        <position y="50.0" x="600.0"/>
     </workflow-item>
-    <workflow-item name="item3" out-name="item5" alt-out-name="item2" type="custom-condition" comparator="0">
-        <display-name>Decision</display-name>
-        <script encoded="false">if(vmnumber&lt;vmCount){
-    return true;
-}else{
-    return false;
-}</script>
-        <in-binding>
-            <bind name="vmnumber" type="number" export-name="vmnumber"/>
-            <bind name="vmCount" type="number" export-name="vmCount"/>
-        </in-binding>
-        <out-binding/>
-        <description>Custom decision based on a custom script.</description>
-        <position y="50.0" x="360.0"/>
-    </workflow-item>
-    <workflow-item name="item4" out-name="item3" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
-        <display-name>Increase counter</display-name>
-        <script encoded="false">//Auto-generated script
-counter = counter + 1;</script>
-        <in-binding>
-            <bind name="counter" type="number" export-name="vmnumber">
-                <description>Item to increase</description>
-            </bind>
-        </in-binding>
-        <out-binding>
-            <bind name="counter" type="number" export-name="vmnumber">
-                <description>Increased item</description>
-            </bind>
-        </out-binding>
-        <description>Increment a counter by one.</description>
-        <position y="120.0" x="360.0"/>
-    </workflow-item>
-    <workflow-item name="item5" out-name="item6" type="task" comparator="0">
-        <display-name>Scriptable task</display-name>
-        <script encoded="false">CurrentVM = allVMs[vmnumber];</script>
-        <in-binding>
-            <bind name="allVMs" type="Array/VC:VirtualMachine" export-name="allVMs"/>
-            <bind name="vmnumber" type="number" export-name="vmnumber"/>
-        </in-binding>
-        <out-binding>
-            <bind name="CurrentVM" type="VC:VirtualMachine" export-name="CurrentVM"/>
-        </out-binding>
-        <description>Simple task with custom script capability.</description>
-        <position y="60.0" x="500.0"/>
-    </workflow-item>
-    <workflow-item name="item6" out-name="item4" type="link" linked-workflow-id="BD80808080808080808080808080808099C380800122528313869552e41805bb1" comparator="0">
+    <workflow-item name="item1" out-name="item2" type="link" linked-workflow-id="BD80808080808080808080808080808099C380800122528313869552e41805bb1" comparator="0">
         <display-name>Extract virtual machine information</display-name>
         <script encoded="false"></script>
         <in-binding>
-            <bind name="vm" type="VC:VirtualMachine" export-name="CurrentVM">
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm">
                 <description>Virtual machine from which to extract information</description>
             </bind>
         </in-binding>
@@ -239,7 +173,7 @@ counter = counter + 1;</script>
             <bind name="host" type="VC:HostSystem" export-name="host">
                 <description>Host</description>
             </bind>
-            <bind name="resourcePool" type="VC:ResourcePool" export-name="resourcePool_1">
+            <bind name="resourcePool" type="VC:ResourcePool" export-name="resourcePool">
                 <description>Resource Pool</description>
             </bind>
             <bind name="cluster" type="VC:ClusterComputeResource" export-name="cluster">
@@ -253,6 +187,44 @@ counter = counter + 1;</script>
             </bind>
         </out-binding>
         <description> </description>
-        <position y="120.0" x="500.0"/>
+        <position y="60.0" x="170.0"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item4" type="task" script-module="uno.vixen.netbox/GetAllVMs" comparator="0">
+        <display-name>GetAllVMs</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").GetAllVMs(att_resthost,token);
+</script>
+        <in-binding>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="att_resthost">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="token">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/string" export-name="AllVMs"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="300.0"/>
+    </workflow-item>
+    <workflow-item name="item3" type="end" end-mode="0" comparator="0">
+        <position y="110.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item4" out-name="item0" alt-out-name="item3" type="custom-condition" comparator="0">
+        <display-name>VM exist?</display-name>
+        <script encoded="false">for (i=0; i&lt;AllVMs.length; i++){
+    if(vm.displayName == AllVMs[i]){
+        return true;
+    }
+}
+return false;</script>
+        <in-binding>
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm"/>
+            <bind name="AllVMs" type="Array/string" export-name="AllVMs"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="50.0" x="420.0"/>
     </workflow-item>
 </ns2:workflow>

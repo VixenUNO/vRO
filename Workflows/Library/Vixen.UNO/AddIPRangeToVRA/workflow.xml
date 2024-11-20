@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item2" object-name="workflow:name=generic" id="40edb748-69db-49a0-a0d9-c7c5999dc3d6" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>AddIPRangeToVRA</display-name>
+    <position y="50.0" x="100.0"/>
+    <input>
+        <param name="startip" type="string">
+            <description></description>
+        </param>
+        <param name="endip" type="string">
+            <description></description>
+        </param>
+        <param name="name" type="string">
+            <description></description>
+        </param>
+        <param name="description" type="string">
+            <description></description>
+        </param>
+        <param name="Network" type="VRA:FabricNetwork"/>
+    </input>
+    <output>
+        <param name="actionResult" type="string"/>
+    </output>
+    <attrib name="username" type="string" conf-id="6e2168e8-697b-4cda-a9be-d93f9b8073c9" conf-key="login">
+        <description></description>
+    </attrib>
+    <attrib name="password" type="SecureString" conf-id="6e2168e8-697b-4cda-a9be-d93f9b8073c9" conf-key="password">
+        <description></description>
+    </attrib>
+    <attrib name="resthost" type="REST:RESTHost">
+        <value encoded="n">dunes://service.dunes.ch/CustomSDKObject?id='617b843c-b95a-44ab-8098-193797cf4e82'&amp;dunesName='REST:RESTHost'</value>
+        <description></description>
+    </attrib>
+    <attrib name="token" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="networkid" type="string">
+        <value encoded="n"></value>
+        <description></description>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="50.0" x="620.0"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item4" type="task" script-module="uno.vixen.vra/GetToken" comparator="0">
+        <display-name>GetToken</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vra").GetToken(username,password,resthost);
+</script>
+        <in-binding>
+            <bind name="username" type="string" export-name="username">
+                <description></description>
+            </bind>
+            <bind name="password" type="SecureString" export-name="password">
+                <description></description>
+            </bind>
+            <bind name="resthost" type="REST:RESTHost" export-name="resthost">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="token"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="220.0"/>
+    </workflow-item>
+    <workflow-item name="item3" out-name="item0" type="task" script-module="uno.vixen.vra/CreateIPRange" comparator="0">
+        <display-name>CreateIPRange</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vra").CreateIPRange(resthost,token,networkid,startip,endip,name,description);
+</script>
+        <in-binding>
+            <bind name="resthost" type="REST:RESTHost" export-name="resthost">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="token">
+                <description></description>
+            </bind>
+            <bind name="networkid" type="string" export-name="networkid">
+                <description></description>
+            </bind>
+            <bind name="startip" type="string" export-name="startip">
+                <description></description>
+            </bind>
+            <bind name="endip" type="string" export-name="endip">
+                <description></description>
+            </bind>
+            <bind name="name" type="string" export-name="name">
+                <description></description>
+            </bind>
+            <bind name="description" type="string" export-name="description">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item4" out-name="item3" type="task" comparator="0">
+        <display-name>GetNetworkID</display-name>
+        <script encoded="false">networkid = Network.id</script>
+        <in-binding>
+            <bind name="Network" type="VRA:FabricNetwork" export-name="Network"/>
+        </in-binding>
+        <out-binding>
+            <bind name="networkid" type="string" export-name="networkid"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="60.0" x="340.0"/>
+    </workflow-item>
+</ns2:workflow>

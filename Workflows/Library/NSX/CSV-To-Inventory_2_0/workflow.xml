@@ -1,132 +1,132 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="cd07cc35-3693-4e07-a3f8-7fe32c6b700a" version="0.3.0" api-version="6.0.0" allowed-operations="vef" editor-version="2.0" restartMode="1" resumeFromFailedMode="0">
-  <display-name><![CDATA[CSV-To-Inventory_2_0]]></display-name>
-  <position y="-3.0" x="121.1764705882353"/>
-  <input>
-    <param name="CSV" type="MimeAttachment"/>
-    <param name="restHost" type="REST:RESTHost"/>
-  </input>
-  <output>
-    <param name="actionResult" type="string"/>
-  </output>
-  <attrib name="parsedjson" type="string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="arrayfromjson" type="Array/Properties" read-only="false">
-    <value encoded="n"><![CDATA[[]]]></value>
-  </attrib>
-  <attrib name="currentelementnumber" type="number" read-only="false">
-    <value encoded="n"><![CDATA[0.0]]></value>
-  </attrib>
-  <attrib name="totalnumberofelements" type="number" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="inventorytype" type="string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="AllServices" type="Array/string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="AllGroups" type="Array/string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="Type" type="string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="Name_Parent_group" type="string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="Value_Child_element" type="string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="Description" type="string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="revision" type="string" read-only="false">
-    <value encoded="n"><![CDATA[]]></value>
-  </attrib>
-  <attrib name="Host" type="Array/Properties" read-only="false">
-    <value encoded="n"><![CDATA[[]]]></value>
-  </attrib>
-  <attrib name="Group" type="Array/Properties" read-only="false">
-    <value encoded="n"><![CDATA[[]]]></value>
-  </attrib>
-  <attrib name="Service" type="Array/Properties" read-only="false">
-    <value encoded="n"><![CDATA[[]]]></value>
-  </attrib>
-  <attrib name="ServiceGroup" type="Array/Properties" read-only="false">
-    <value encoded="n"><![CDATA[[]]]></value>
-  </attrib>
-  <attrib name="SubGroup" type="Array/Properties" read-only="false">
-    <value encoded="n"><![CDATA[[]]]></value>
-  </attrib>
-  <attrib name="iteration" type="number" read-only="false">
-    <value encoded="n"><![CDATA[0.0]]></value>
-  </attrib>
-  <workflow-item name="item1" out-name="item6" type="task" script-module="uno.vixen.nsx.inventory/ParseCSVTemplateToJSON">
-    <display-name><![CDATA[ParseCSVTemplateToJSON]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="cd07cc35-3693-4e07-a3f8-7fe32c6b700a" editor-version="2.0" version="0.3.0" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+    <display-name>CSV-To-Inventory_2_0</display-name>
+    <position y="-3.0" x="121.1764705882353"/>
+    <input>
+        <param name="CSV" type="MimeAttachment"/>
+        <param name="restHost" type="REST:RESTHost"/>
+    </input>
+    <output>
+        <param name="actionResult" type="string"/>
+    </output>
+    <attrib name="parsedjson" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="arrayfromjson" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="currentelementnumber" type="number">
+        <value encoded="n">0.0</value>
+    </attrib>
+    <attrib name="totalnumberofelements" type="number">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="inventorytype" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="AllServices" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="AllGroups" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="Type" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Name_Parent_group" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Value_Child_element" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Description" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="revision" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Host" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="Group" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="Service" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="ServiceGroup" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="SubGroup" type="Array/Properties">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="iteration" type="number">
+        <value encoded="n">0.0</value>
+    </attrib>
+    <workflow-item name="item1" out-name="item6" type="task" script-module="uno.vixen.nsx.inventory/ParseCSVTemplateToJSON" comparator="0">
+        <display-name>ParseCSVTemplateToJSON</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").ParseCSVTemplateToJSON(CSV);
-]]></script>
-    <in-binding>
-      <bind name="CSV" type="MimeAttachment" export-name="CSV"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="Array/Properties" export-name="arrayfromjson"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="60.0" x="80.0"/>
-  </workflow-item>
-  <workflow-item name="item6" out-name="item15" type="task">
-    <display-name><![CDATA[Get Total Number of Elements]]></display-name>
-    <script encoded="false"><![CDATA[totalnumberofelements = arrayfromjson.length;]]></script>
-    <in-binding>
-      <bind name="arrayfromjson" type="Array/Properties" export-name="arrayfromjson"/>
-    </in-binding>
-    <out-binding>
-      <bind name="totalnumberofelements" type="number" export-name="totalnumberofelements"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="118.8235294117647" x="80.0"/>
-  </workflow-item>
-  <workflow-item name="item15" out-name="item16" type="task" script-module="uno.vixen.nsx.inventory/GetAllServices">
-    <display-name><![CDATA[GetAllServices]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+</script>
+        <in-binding>
+            <bind name="CSV" type="MimeAttachment" export-name="CSV"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/Properties" export-name="arrayfromjson"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item6" out-name="item15" type="task" comparator="0">
+        <display-name>Get Total Number of Elements</display-name>
+        <script encoded="false">totalnumberofelements = arrayfromjson.length;</script>
+        <in-binding>
+            <bind name="arrayfromjson" type="Array/Properties" export-name="arrayfromjson"/>
+        </in-binding>
+        <out-binding>
+            <bind name="totalnumberofelements" type="number" export-name="totalnumberofelements"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="118.8235294117647" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item15" out-name="item16" type="task" script-module="uno.vixen.nsx.inventory/GetAllServices" comparator="0">
+        <display-name>GetAllServices</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").GetAllServices(restHost);
-]]></script>
-    <in-binding>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="Array/string" export-name="AllServices"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="177.6470588235294" x="80.0"/>
-  </workflow-item>
-  <workflow-item name="item16" out-name="item17" type="task" script-module="uno.vixen.nsx.inventory/GetAllGroups">
-    <display-name><![CDATA[GetAllGroups]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/string" export-name="AllServices"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="177.6470588235294" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item16" out-name="item17" type="task" script-module="uno.vixen.nsx.inventory/GetAllGroups" comparator="0">
+        <display-name>GetAllGroups</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").GetAllGroups(restHost);
-]]></script>
-    <in-binding>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="Array/string" export-name="AllGroups"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="240.0" x="80.0"/>
-  </workflow-item>
-  <workflow-item name="item17" out-name="item20" type="task">
-    <display-name><![CDATA[Parse Types to arrays]]></display-name>
-    <script encoded="false"><![CDATA[Group = Array();
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/string" export-name="AllGroups"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="240.0" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item17" out-name="item20" type="task" comparator="0">
+        <display-name>Parse Types to arrays</display-name>
+        <script encoded="false">Group = Array();
 Host = Array();
 Service = Array();
 ServiceGroup = Array();
 SubGroup = Array();
 
 
-for (i = 0; i < arrayfromjson.length; i++) {
+for (i = 0; i &lt; arrayfromjson.length; i++) {
 
     System.log(arrayfromjson[i].Type);
 
@@ -154,578 +154,617 @@ for (i = 0; i < arrayfromjson.length; i++) {
             }
         }
     };
-}]]></script>
-    <in-binding>
-      <bind name="arrayfromjson" type="Array/Properties" export-name="arrayfromjson"/>
-    </in-binding>
-    <out-binding>
-      <bind name="Group" type="Array/Properties" export-name="Group"/>
-      <bind name="Host" type="Array/Properties" export-name="Host"/>
-      <bind name="Service" type="Array/Properties" export-name="Service"/>
-      <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
-      <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="300.0" x="80.0"/>
-  </workflow-item>
-  <workflow-item name="item20" out-name="item23" type="custom-condition" alt-out-name="item21">
-    <display-name><![CDATA[Host array exist?]]></display-name>
-    <script encoded="false"><![CDATA[if(0<Host.length){
+}</script>
+        <in-binding>
+            <bind name="arrayfromjson" type="Array/Properties" export-name="arrayfromjson"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="300.0" x="80.0"/>
+    </workflow-item>
+    <workflow-item name="item20" out-name="item23" alt-out-name="item21" type="custom-condition" comparator="0">
+        <display-name>Host array exist?</display-name>
+        <script encoded="false">if(0&lt;Host.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="Host" type="Array/Properties" export-name="Host"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="0.0" x="320.0"/>
-  </workflow-item>
-  <workflow-item name="item21" out-name="item31" type="task">
-    <display-name><![CDATA[Reset Iteration number]]></display-name>
-    <script encoded="false"><![CDATA[iteration=0;]]></script>
-    <in-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </in-binding>
-    <out-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="10.0" x="460.0"/>
-  </workflow-item>
-  <workflow-item name="item23" out-name="item24" type="custom-condition" alt-out-name="item21">
-    <display-name><![CDATA[Create Host Group?]]></display-name>
-    <script encoded="false"><![CDATA[if(iteration<Host.length){
+}</script>
+        <in-binding>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="320.0"/>
+    </workflow-item>
+    <workflow-item name="item21" out-name="item31" type="task" comparator="0">
+        <display-name>Reset Iteration number</display-name>
+        <script encoded="false">iteration=0;</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item23" out-name="item24" alt-out-name="item21" type="custom-condition" comparator="0">
+        <display-name>Create Host Group?</display-name>
+        <script encoded="false">if(iteration&lt;Host.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="Host" type="Array/Properties" export-name="Host"/>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="80.0" x="320.0"/>
-  </workflow-item>
-  <workflow-item name="item24" out-name="item26" type="task">
-    <display-name><![CDATA[Parse array into values]]></display-name>
-    <script encoded="false"><![CDATA[Name_Parent_group = Host[iteration].Name_Parent_group;
+}</script>
+        <in-binding>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="320.0"/>
+    </workflow-item>
+    <workflow-item name="item24" out-name="item26" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = Host[iteration].Name_Parent_group;
 Value_Child_element = Host[iteration].Value_Child_element;
-Description = Host[iteration].Description;]]></script>
-    <in-binding>
-      <bind name="Host" type="Array/Properties" export-name="Host"/>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </in-binding>
-    <out-binding>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-      <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
-      <bind name="Description" type="string" export-name="Description"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="90.0" x="460.0"/>
-  </workflow-item>
-  <workflow-item name="item26" out-name="item29" type="custom-condition" alt-out-name="item28">
-    <display-name><![CDATA[Name exist?]]></display-name>
-    <script encoded="false"><![CDATA[for(i=0;i<AllGroups.length;i++){
+Description = Host[iteration].Description;</script>
+        <in-binding>
+            <bind name="Host" type="Array/Properties" export-name="Host"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="460.0"/>
+    </workflow-item>
+    <workflow-item name="item26" out-name="item29" alt-out-name="item28" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllGroups.length;i++){
     if(Name_Parent_group == AllGroups[i]){
         return true;
     }
 }
-return false;]]></script>
-    <in-binding>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-      <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="180.0" x="460.0"/>
-  </workflow-item>
-  <workflow-item name="item28" out-name="item29" type="task" script-module="uno.vixen.nsx/CreateInventoryHostGroup">
-    <display-name><![CDATA[CreateInventoryHostGroup]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+return false;</script>
+        <in-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="466.3157894736843"/>
+    </workflow-item>
+    <workflow-item name="item28" out-name="item71" type="task" script-module="uno.vixen.nsx/CreateInventoryHostGroup" comparator="0">
+        <display-name>CreateInventoryHostGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx").CreateInventoryHostGroup(restHost,groupname,ip,description);
-]]></script>
-    <in-binding>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-      <bind name="groupname" type="string" export-name="Name_Parent_group"/>
-      <bind name="ip" type="string" export-name="Value_Child_element"/>
-      <bind name="description" type="string" export-name="Description"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="string" export-name="actionResult"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="290.0" x="460.0"/>
-  </workflow-item>
-  <workflow-item name="item29" prototype-id="increase-counter" out-name="item23" content-mode="x" type="task">
-    <display-name><![CDATA[Increase iteration]]></display-name>
-    <script encoded="false"><![CDATA[//Auto-generated script
-counter = counter + 1;]]></script>
-    <in-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Item to increase]]></description>
-      </bind>
-    </in-binding>
-    <out-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Increased item]]></description>
-      </bind>
-    </out-binding>
-    <description><![CDATA[Increment a counter by one.]]></description>
-    <position y="290.0" x="320.0"/>
-  </workflow-item>
-  <workflow-item name="item31" out-name="item34" type="custom-condition" alt-out-name="item32">
-    <display-name><![CDATA[Group array exist?]]></display-name>
-    <script encoded="false"><![CDATA[if(0<Group.length){
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+            <bind name="groupname" type="string" export-name="Name_Parent_group"/>
+            <bind name="ip" type="string" export-name="Value_Child_element"/>
+            <bind name="description" type="string" export-name="Description"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="295.2631578947369" x="466.3157894736843"/>
+    </workflow-item>
+    <workflow-item name="item29" out-name="item23" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase iteration</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="190.0" x="318.94736842105266"/>
+    </workflow-item>
+    <workflow-item name="item31" out-name="item34" alt-out-name="item32" type="custom-condition" comparator="0">
+        <display-name>Group array exist?</display-name>
+        <script encoded="false">if(0&lt;Group.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="Group" type="Array/Properties" export-name="Group"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="0.0" x="620.0"/>
-  </workflow-item>
-  <workflow-item name="item32" out-name="item41" type="task">
-    <display-name><![CDATA[Reset iteration number]]></display-name>
-    <script encoded="false"><![CDATA[iteration = 0;]]></script>
-    <in-binding/>
-    <out-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="10.0" x="760.0"/>
-  </workflow-item>
-  <workflow-item name="item34" out-name="item35" type="custom-condition" alt-out-name="item32">
-    <display-name><![CDATA[Create Group?]]></display-name>
-    <script encoded="false"><![CDATA[if(iteration<Group.length){
+}</script>
+        <in-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="620.0"/>
+    </workflow-item>
+    <workflow-item name="item32" out-name="item41" type="task" comparator="0">
+        <display-name>Reset iteration number</display-name>
+        <script encoded="false">iteration = 0;</script>
+        <in-binding/>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="760.0"/>
+    </workflow-item>
+    <workflow-item name="item34" out-name="item35" alt-out-name="item32" type="custom-condition" comparator="0">
+        <display-name>Create Group?</display-name>
+        <script encoded="false">if(iteration&lt;Group.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="Group" type="Array/Properties" export-name="Group"/>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="80.0" x="620.0"/>
-  </workflow-item>
-  <workflow-item name="item35" out-name="item37" type="task">
-    <display-name><![CDATA[Parse array into values]]></display-name>
-    <script encoded="false"><![CDATA[Name_Parent_group = Group[iteration].Name_Parent_group;
+}</script>
+        <in-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="620.0"/>
+    </workflow-item>
+    <workflow-item name="item35" out-name="item37" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = Group[iteration].Name_Parent_group;
 Value_Child_element = Group[iteration].Value_Child_element;
-Description = Group[iteration].Description;]]></script>
-    <in-binding>
-      <bind name="Group" type="Array/Properties" export-name="Group"/>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </in-binding>
-    <out-binding>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-      <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
-      <bind name="Description" type="string" export-name="Description"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="90.0" x="760.0"/>
-  </workflow-item>
-  <workflow-item name="item37" out-name="item38" type="custom-condition" alt-out-name="item39">
-    <display-name><![CDATA[Name exist?]]></display-name>
-    <script encoded="false"><![CDATA[for(i=0;i<AllGroups.length;i++){
+Description = Group[iteration].Description;</script>
+        <in-binding>
+            <bind name="Group" type="Array/Properties" export-name="Group"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="760.0"/>
+    </workflow-item>
+    <workflow-item name="item37" out-name="item38" alt-out-name="item39" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllGroups.length;i++){
     if(Name_Parent_group == AllGroups[i]){
         return true;
     }
 }
-return false;]]></script>
-    <in-binding>
-      <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="180.0" x="760.0"/>
-  </workflow-item>
-  <workflow-item name="item38" prototype-id="increase-counter" out-name="item34" content-mode="x" type="task">
-    <display-name><![CDATA[Increase counter]]></display-name>
-    <script encoded="false"><![CDATA[//Auto-generated script
-counter = counter + 1;]]></script>
-    <in-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Item to increase]]></description>
-      </bind>
-    </in-binding>
-    <out-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Increased item]]></description>
-      </bind>
-    </out-binding>
-    <description><![CDATA[Increment a counter by one.]]></description>
-    <position y="290.0" x="620.0"/>
-  </workflow-item>
-  <workflow-item name="item39" out-name="item38" type="task" script-module="uno.vixen.nsx.inventory/CreateEmptyGroup">
-    <display-name><![CDATA[CreateEmptyGroup]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+return false;</script>
+        <in-binding>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="760.0"/>
+    </workflow-item>
+    <workflow-item name="item38" out-name="item34" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="190.0" x="613.6842105263158"/>
+    </workflow-item>
+    <workflow-item name="item39" out-name="item72" type="task" script-module="uno.vixen.nsx.inventory/CreateEmptyGroup" comparator="0">
+        <display-name>CreateEmptyGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").CreateEmptyGroup(groupname,restHost,description);
-]]></script>
-    <in-binding>
-      <bind name="groupname" type="string" export-name="Name_Parent_group"/>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-      <bind name="description" type="string" export-name="Description"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="string" export-name="actionResult"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="290.0" x="760.0"/>
-  </workflow-item>
-  <workflow-item name="item41" out-name="item43" type="custom-condition" alt-out-name="item44">
-    <display-name><![CDATA[SubGroup array exist?]]></display-name>
-    <script encoded="false"><![CDATA[if(0<SubGroup.length){
+</script>
+        <in-binding>
+            <bind name="groupname" type="string" export-name="Name_Parent_group"/>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+            <bind name="description" type="string" export-name="Description"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="295.2631578947369" x="761.0526315789474"/>
+    </workflow-item>
+    <workflow-item name="item41" out-name="item43" alt-out-name="item44" type="custom-condition" comparator="0">
+        <display-name>SubGroup array exist?</display-name>
+        <script encoded="false">if(0&lt;SubGroup.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="0.0" x="920.0"/>
-  </workflow-item>
-  <workflow-item name="item43" out-name="item45" type="custom-condition" alt-out-name="item44">
-    <display-name><![CDATA[Create SubGroup?]]></display-name>
-    <script encoded="false"><![CDATA[if(iteration<SubGroup.length){
+}</script>
+        <in-binding>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="920.0"/>
+    </workflow-item>
+    <workflow-item name="item43" out-name="item45" alt-out-name="item44" type="custom-condition" comparator="0">
+        <display-name>Create SubGroup?</display-name>
+        <script encoded="false">if(iteration&lt;SubGroup.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-      <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="80.0" x="920.0"/>
-  </workflow-item>
-  <workflow-item name="item44" out-name="item49" type="task">
-    <display-name><![CDATA[Reset iteration number]]></display-name>
-    <script encoded="false"><![CDATA[iteration = 0;]]></script>
-    <in-binding/>
-    <out-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="10.0" x="1060.0"/>
-  </workflow-item>
-  <workflow-item name="item45" out-name="item47" type="task">
-    <display-name><![CDATA[Parse array into values]]></display-name>
-    <script encoded="false"><![CDATA[Name_Parent_group = SubGroup[iteration].Name_Parent_group;
+}</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="920.0"/>
+    </workflow-item>
+    <workflow-item name="item44" out-name="item49" type="task" comparator="0">
+        <display-name>Reset iteration number</display-name>
+        <script encoded="false">iteration = 0;</script>
+        <in-binding/>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="1060.0"/>
+    </workflow-item>
+    <workflow-item name="item45" out-name="item47" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = SubGroup[iteration].Name_Parent_group;
 Value_Child_element = SubGroup[iteration].Value_Child_element;
-Description = SubGroup[iteration].Description;]]></script>
-    <in-binding>
-      <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </in-binding>
-    <out-binding>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-      <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
-      <bind name="Description" type="string" export-name="Description"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="90.0" x="1060.0"/>
-  </workflow-item>
-  <workflow-item name="item47" out-name="item70" type="custom-condition" alt-out-name="item69">
-    <display-name><![CDATA[Name exist?]]></display-name>
-    <script encoded="false"><![CDATA[for(i=0;i<AllGroups.length;i++){
+Description = SubGroup[iteration].Description;</script>
+        <in-binding>
+            <bind name="SubGroup" type="Array/Properties" export-name="SubGroup"/>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="1060.0"/>
+    </workflow-item>
+    <workflow-item name="item47" out-name="item70" alt-out-name="item69" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllGroups.length;i++){
     if(Name_Parent_group == AllGroups[i]){
         return true;
     }
 }
-return false;]]></script>
-    <in-binding>
-      <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="180.0" x="1060.0"/>
-  </workflow-item>
-  <workflow-item name="item49" out-name="item51" type="custom-condition" alt-out-name="item52">
-    <display-name><![CDATA[Service array exist?]]></display-name>
-    <script encoded="false"><![CDATA[if(0<Service.length){
+return false;</script>
+        <in-binding>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="1060.0"/>
+    </workflow-item>
+    <workflow-item name="item49" out-name="item51" alt-out-name="item52" type="custom-condition" comparator="0">
+        <display-name>Service array exist?</display-name>
+        <script encoded="false">if(0&lt;Service.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="Service" type="Array/Properties" export-name="Service"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="0.0" x="1220.0"/>
-  </workflow-item>
-  <workflow-item name="item51" out-name="item53" type="custom-condition" alt-out-name="item52">
-    <display-name><![CDATA[Create Service?]]></display-name>
-    <script encoded="false"><![CDATA[if(iteration<Service.length){
+}</script>
+        <in-binding>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="1220.0"/>
+    </workflow-item>
+    <workflow-item name="item51" out-name="item53" alt-out-name="item52" type="custom-condition" comparator="0">
+        <display-name>Create Service?</display-name>
+        <script encoded="false">if(iteration&lt;Service.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-      <bind name="Service" type="Array/Properties" export-name="Service"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="80.0" x="1220.0"/>
-  </workflow-item>
-  <workflow-item name="item52" out-name="item59" type="task">
-    <display-name><![CDATA[Reset iteration number]]></display-name>
-    <script encoded="false"><![CDATA[iteration = 0;]]></script>
-    <in-binding/>
-    <out-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="10.0" x="1360.0"/>
-  </workflow-item>
-  <workflow-item name="item53" out-name="item55" type="task">
-    <display-name><![CDATA[Parse array into values]]></display-name>
-    <script encoded="false"><![CDATA[Name_Parent_group = Service[iteration].Name_Parent_group;
+}</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="1220.0"/>
+    </workflow-item>
+    <workflow-item name="item52" out-name="item59" type="task" comparator="0">
+        <display-name>Reset iteration number</display-name>
+        <script encoded="false">iteration = 0;</script>
+        <in-binding/>
+        <out-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="10.0" x="1360.0"/>
+    </workflow-item>
+    <workflow-item name="item53" out-name="item55" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = Service[iteration].Name_Parent_group;
 Value_Child_element = Service[iteration].Value_Child_element;
-Description = Service[iteration].Description;]]></script>
-    <in-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-      <bind name="Service" type="Array/Properties" export-name="Service"/>
-    </in-binding>
-    <out-binding>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-      <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
-      <bind name="Description" type="string" export-name="Description"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="90.0" x="1360.0"/>
-  </workflow-item>
-  <workflow-item name="item55" out-name="item56" type="custom-condition" alt-out-name="item57">
-    <display-name><![CDATA[Name exist?]]></display-name>
-    <script encoded="false"><![CDATA[for(i=0;i<AllServices.length;i++){
+Description = Service[iteration].Description;</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="Service" type="Array/Properties" export-name="Service"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="1360.0"/>
+    </workflow-item>
+    <workflow-item name="item55" out-name="item56" alt-out-name="item57" type="custom-condition" comparator="0">
+        <display-name>Name exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllServices.length;i++){
     if(Name_Parent_group == AllServices[i]){
         return true;
     }
 }
-return false;]]></script>
-    <in-binding>
-      <bind name="AllServices" type="Array/string" export-name="AllServices"/>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="180.0" x="1360.0"/>
-  </workflow-item>
-  <workflow-item name="item56" prototype-id="increase-counter" out-name="item51" content-mode="x" type="task">
-    <display-name><![CDATA[Increase counter]]></display-name>
-    <script encoded="false"><![CDATA[//Auto-generated script
-counter = counter + 1;]]></script>
-    <in-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Item to increase]]></description>
-      </bind>
-    </in-binding>
-    <out-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Increased item]]></description>
-      </bind>
-    </out-binding>
-    <description><![CDATA[Increment a counter by one.]]></description>
-    <position y="290.0" x="1220.0"/>
-  </workflow-item>
-  <workflow-item name="item57" out-name="item56" type="task" script-module="uno.vixen.nsx.inventory/CreateService">
-    <display-name><![CDATA[CreateService]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+return false;</script>
+        <in-binding>
+            <bind name="AllServices" type="Array/string" export-name="AllServices"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="1360.0"/>
+    </workflow-item>
+    <workflow-item name="item56" out-name="item51" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="190.0" x="1224.2105263157896"/>
+    </workflow-item>
+    <workflow-item name="item57" out-name="item73" type="task" script-module="uno.vixen.nsx.inventory/CreateService" comparator="0">
+        <display-name>CreateService</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").CreateService(servicename,restHost,servicedescription,value,revision);
-]]></script>
-    <in-binding>
-      <bind name="servicename" type="string" export-name="Name_Parent_group"/>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-      <bind name="servicedescription" type="string" export-name="Description"/>
-      <bind name="value" type="string" export-name="Value_Child_element"/>
-      <bind name="revision" type="string" export-name="revision"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="string" export-name="actionResult"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="290.0" x="1360.0"/>
-  </workflow-item>
-  <workflow-item name="item58" type="end" end-mode="0">
-    <in-binding/>
-    <position y="0.0" x="1740.0"/>
-  </workflow-item>
-  <workflow-item name="item59" out-name="item61" type="custom-condition" alt-out-name="item58">
-    <display-name><![CDATA[ServiceGroup array exist?]]></display-name>
-    <script encoded="false"><![CDATA[if(0<ServiceGroup.length){
+</script>
+        <in-binding>
+            <bind name="servicename" type="string" export-name="Name_Parent_group"/>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+            <bind name="servicedescription" type="string" export-name="Description"/>
+            <bind name="value" type="string" export-name="Value_Child_element"/>
+            <bind name="revision" type="string" export-name="revision"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="295.2631578947369" x="1371.578947368421"/>
+    </workflow-item>
+    <workflow-item name="item58" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="0.0" x="1740.0"/>
+    </workflow-item>
+    <workflow-item name="item59" out-name="item61" alt-out-name="item58" type="custom-condition" comparator="0">
+        <display-name>ServiceGroup array exist?</display-name>
+        <script encoded="false">if(0&lt;ServiceGroup.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="0.0" x="1520.0"/>
-  </workflow-item>
-  <workflow-item name="item61" out-name="item62" type="custom-condition" alt-out-name="item58">
-    <display-name><![CDATA[Create ServiceGroup?]]></display-name>
-    <script encoded="false"><![CDATA[if(iteration<ServiceGroup.length){
+}</script>
+        <in-binding>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="0.0" x="1520.0"/>
+    </workflow-item>
+    <workflow-item name="item61" out-name="item62" alt-out-name="item58" type="custom-condition" comparator="0">
+        <display-name>Create ServiceGroup?</display-name>
+        <script encoded="false">if(iteration&lt;ServiceGroup.length){
     return true;
 }else{
     return false;
-}]]></script>
-    <in-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-      <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="80.0" x="1520.0"/>
-  </workflow-item>
-  <workflow-item name="item62" out-name="item65" type="task">
-    <display-name><![CDATA[Parse array into values]]></display-name>
-    <script encoded="false"><![CDATA[Name_Parent_group = ServiceGroup[iteration].Name_Parent_group;
+}</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="80.0" x="1520.0"/>
+    </workflow-item>
+    <workflow-item name="item62" out-name="item65" type="task" comparator="0">
+        <display-name>Parse array into values</display-name>
+        <script encoded="false">Name_Parent_group = ServiceGroup[iteration].Name_Parent_group;
 Value_Child_element = ServiceGroup[iteration].Value_Child_element;
-Description = ServiceGroup[iteration].Description;]]></script>
-    <in-binding>
-      <bind name="iteration" type="number" export-name="iteration"/>
-      <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
-    </in-binding>
-    <out-binding>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-      <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
-      <bind name="Description" type="string" export-name="Description"/>
-    </out-binding>
-    <description><![CDATA[Simple task with custom script capability.]]></description>
-    <position y="90.0" x="1660.0"/>
-  </workflow-item>
-  <workflow-item name="item63" prototype-id="increase-counter" out-name="item43" content-mode="x" type="task">
-    <display-name><![CDATA[Increase counter]]></display-name>
-    <script encoded="false"><![CDATA[//Auto-generated script
-counter = counter + 1;]]></script>
-    <in-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Item to increase]]></description>
-      </bind>
-    </in-binding>
-    <out-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Increased item]]></description>
-      </bind>
-    </out-binding>
-    <description><![CDATA[Increment a counter by one.]]></description>
-    <position y="290.0" x="920.0"/>
-  </workflow-item>
-  <workflow-item name="item65" out-name="item68" type="custom-condition" alt-out-name="item66">
-    <display-name><![CDATA[Nmae exist?]]></display-name>
-    <script encoded="false"><![CDATA[for(i=0;i<AllServices.length;i++){
+Description = ServiceGroup[iteration].Description;</script>
+        <in-binding>
+            <bind name="iteration" type="number" export-name="iteration"/>
+            <bind name="ServiceGroup" type="Array/Properties" export-name="ServiceGroup"/>
+        </in-binding>
+        <out-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="Value_Child_element" type="string" export-name="Value_Child_element"/>
+            <bind name="Description" type="string" export-name="Description"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="90.0" x="1660.0"/>
+    </workflow-item>
+    <workflow-item name="item63" out-name="item43" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="290.0" x="920.0"/>
+    </workflow-item>
+    <workflow-item name="item65" out-name="item68" alt-out-name="item66" type="custom-condition" comparator="0">
+        <display-name>Nmae exist?</display-name>
+        <script encoded="false">for(i=0;i&lt;AllServices.length;i++){
     if(Name_Parent_group == AllServices[i]){
         return true;
     }
 }
-return false;]]></script>
-    <in-binding>
-      <bind name="AllServices" type="Array/string" export-name="AllServices"/>
-      <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
-    </in-binding>
-    <out-binding/>
-    <description><![CDATA[Custom decision based on a custom script.]]></description>
-    <position y="180.0" x="1660.0"/>
-  </workflow-item>
-  <workflow-item name="item66" out-name="item67" type="task" script-module="uno.vixen.nsx.inventory/CreateServiceGroup">
-    <display-name><![CDATA[CreateServiceGroup]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+return false;</script>
+        <in-binding>
+            <bind name="AllServices" type="Array/string" export-name="AllServices"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="180.0" x="1660.0"/>
+    </workflow-item>
+    <workflow-item name="item66" out-name="item67" type="task" script-module="uno.vixen.nsx.inventory/CreateServiceGroup" comparator="0">
+        <display-name>CreateServiceGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").CreateServiceGroup(servicename,restHost,servicedescription,value,revision);
-]]></script>
-    <in-binding>
-      <bind name="servicename" type="string" export-name="Name_Parent_group"/>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-      <bind name="servicedescription" type="string" export-name="Description"/>
-      <bind name="value" type="string" export-name="Value_Child_element"/>
-      <bind name="revision" type="string" export-name="revision"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="string" export-name="actionResult"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="290.0" x="1660.0"/>
-  </workflow-item>
-  <workflow-item name="item67" prototype-id="increase-counter" out-name="item61" content-mode="x" type="task">
-    <display-name><![CDATA[Increase counter]]></display-name>
-    <script encoded="false"><![CDATA[//Auto-generated script
-counter = counter + 1;]]></script>
-    <in-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Item to increase]]></description>
-      </bind>
-    </in-binding>
-    <out-binding>
-      <bind name="counter" type="number" export-name="iteration">
-        <description><![CDATA[Increased item]]></description>
-      </bind>
-    </out-binding>
-    <description><![CDATA[Increment a counter by one.]]></description>
-    <position y="290.0" x="1520.0"/>
-  </workflow-item>
-  <workflow-item name="item68" out-name="item67" type="task" script-module="uno.vixen.nsx.inventory/PatchServiceGroup">
-    <display-name><![CDATA[PatchServiceGroup]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+</script>
+        <in-binding>
+            <bind name="servicename" type="string" export-name="Name_Parent_group"/>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+            <bind name="servicedescription" type="string" export-name="Description"/>
+            <bind name="value" type="string" export-name="Value_Child_element"/>
+            <bind name="revision" type="string" export-name="revision"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="290.0" x="1660.0"/>
+    </workflow-item>
+    <workflow-item name="item67" out-name="item61" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="iteration">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="290.0" x="1520.0"/>
+    </workflow-item>
+    <workflow-item name="item68" out-name="item67" type="task" script-module="uno.vixen.nsx.inventory/PatchServiceGroup" comparator="0">
+        <display-name>PatchServiceGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").PatchServiceGroup(servicename,restHost,value);
-]]></script>
-    <in-binding>
-      <bind name="servicename" type="string" export-name="Name_Parent_group"/>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-      <bind name="value" type="string" export-name="Value_Child_element"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="string" export-name="actionResult"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="240.0" x="1600.0"/>
-  </workflow-item>
-  <workflow-item name="item69" out-name="item63" type="task" script-module="uno.vixen.nsx.inventory/CreateSubGroup">
-    <display-name><![CDATA[CreateSubGroup]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+</script>
+        <in-binding>
+            <bind name="servicename" type="string" export-name="Name_Parent_group"/>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+            <bind name="value" type="string" export-name="Value_Child_element"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="240.0" x="1600.0"/>
+    </workflow-item>
+    <workflow-item name="item69" out-name="item63" type="task" script-module="uno.vixen.nsx.inventory/CreateSubGroup" comparator="0">
+        <display-name>CreateSubGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").CreateSubGroup(groupname,restHost,description,value);
-]]></script>
-    <in-binding>
-      <bind name="groupname" type="string" export-name="Name_Parent_group"/>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-      <bind name="description" type="string" export-name="Description"/>
-      <bind name="value" type="string" export-name="Value_Child_element"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="string" export-name="actionResult"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="290.0" x="1060.0"/>
-  </workflow-item>
-  <workflow-item name="item70" out-name="item63" type="task" script-module="uno.vixen.nsx.inventory/PatchSubGroupGroup">
-    <display-name><![CDATA[PatchSubGroupGroup]]></display-name>
-    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+</script>
+        <in-binding>
+            <bind name="groupname" type="string" export-name="Name_Parent_group"/>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+            <bind name="description" type="string" export-name="Description"/>
+            <bind name="value" type="string" export-name="Value_Child_element"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="290.0" x="1060.0"/>
+    </workflow-item>
+    <workflow-item name="item70" out-name="item63" type="task" script-module="uno.vixen.nsx.inventory/PatchSubGroupGroup" comparator="0">
+        <display-name>PatchSubGroupGroup</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
 actionResult = System.getModule("uno.vixen.nsx.inventory").PatchSubGroupGroup(groupname,restHost,value);
-]]></script>
-    <in-binding>
-      <bind name="groupname" type="string" export-name="Name_Parent_group"/>
-      <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
-      <bind name="value" type="string" export-name="Value_Child_element"/>
-    </in-binding>
-    <out-binding>
-      <bind name="actionResult" type="string" export-name="actionResult"/>
-    </out-binding>
-    <description><![CDATA[Add a note to the workflow schema.]]></description>
-    <position y="240.0" x="1000.0"/>
-  </workflow-item>
-  <presentation/>
-</workflow>
+</script>
+        <in-binding>
+            <bind name="groupname" type="string" export-name="Name_Parent_group"/>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost"/>
+            <bind name="value" type="string" export-name="Value_Child_element"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="240.0" x="1000.0"/>
+    </workflow-item>
+    <workflow-item name="item71" out-name="item29" type="task" comparator="0">
+        <display-name>add name to array</display-name>
+        <script encoded="false">AllGroups.push(Name_Parent_group);</script>
+        <in-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+        </in-binding>
+        <out-binding>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="295.2631578947369" x="318.94736842105266"/>
+    </workflow-item>
+    <workflow-item name="item72" out-name="item38" type="task" comparator="0">
+        <display-name>add name to array</display-name>
+        <script encoded="false">AllGroups.push(Name_Parent_group);</script>
+        <in-binding>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+        </in-binding>
+        <out-binding>
+            <bind name="AllGroups" type="Array/string" export-name="AllGroups"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="295.2631578947369" x="613.6842105263158"/>
+    </workflow-item>
+    <workflow-item name="item73" out-name="item56" type="task" comparator="0">
+        <display-name>add name to array</display-name>
+        <script encoded="false">AllServices.push(Name_Parent_group);</script>
+        <in-binding>
+            <bind name="AllServices" type="Array/string" export-name="AllServices"/>
+            <bind name="Name_Parent_group" type="string" export-name="Name_Parent_group"/>
+        </in-binding>
+        <out-binding>
+            <bind name="AllServices" type="Array/string" export-name="AllServices"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="295.2631578947369" x="1224.2105263157896"/>
+    </workflow-item>
+</ns2:workflow>

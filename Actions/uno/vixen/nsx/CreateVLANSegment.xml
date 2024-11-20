@@ -9,7 +9,7 @@
 var requestType = "PUT";
 var requestContentType = "application/json";
 var body = {
-    "display_name": segname + "(" + vlanid + ")",
+    "display_name": segname + " (" + vlanid + ")",
     "transport_zone_path": "/infra/sites/default/enforcement-points/default/transport-zones/" + transportzoneid,
     "vlan_ids": [vlanid],
     "tags": [

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="CreateIPRange" result-type="string" api-version="6.0.0" id="d9e3b9b3-19e4-4423-9882-63fb6a937042" version="0.0.0" category-name="uno.vixen.vra">
+  <param n="resthost" t="REST:RESTHost"/>
+  <param n="token" t="string"/>
+  <param n="networkid" t="string"/>
+  <param n="startip" t="string"/>
+  <param n="endip" t="string"/>
+  <param n="name" t="string"/>
+  <param n="description" t="string"/>
+  <script encoded="false"><![CDATA[var operationUrl = ("/iaas/api/network-ip-ranges");
+var requestType = "POST";
+var retrycount = 5;
+
+var body = {
+    "fabricNetworkIds": [
+        networkid
+    ],
+    "ipVersion": "IPv4",
+    "name": name,
+    "description": description,
+    "startIPAddress": startip,
+    "endIPAddress": endip,
+    "tags": [
+        {
+            "key": "name",
+            "value": name
+        }
+    ]
+};
+
+var requestContent = JSON.stringify(body);
+
+System.log (requestContent);
+
+var requestContentType = "application/json";
+var request = resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+request.setHeader("Authorization","Bearer " + token);
+System.log(request.headers);
+for (var i=1;i<retrycount+1;i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+var str = JSON.parse(response.contentAsString);
+
+var link = str._links.self.href;
+
+return link;]]></script>
+</dunes-script-module>

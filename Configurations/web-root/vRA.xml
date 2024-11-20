@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<config-element id="6e2168e8-697b-4cda-a9be-d93f9b8073c9" version="0.0.0">
+  <display-name><![CDATA[vRA]]></display-name>
+  <atts>
+    <att name="login" type="string" read-only="false">
+      <value encoded="n"><![CDATA[configadmin]]></value>
+    </att>
+    <att name="password" type="SecureString" read-only="false">
+      <value encoded="n"><![CDATA[__NULL__]]></value>
+    </att>
+  </atts>
+</config-element>

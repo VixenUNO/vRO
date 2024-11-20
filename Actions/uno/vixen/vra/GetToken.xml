@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetToken" result-type="string" api-version="6.0.0" id="ec5d47bd-f1d2-443c-b358-d97c13c3c354" version="0.0.0" category-name="uno.vixen.vra">
+  <param n="username" t="string"/>
+  <param n="password" t="SecureString"/>
+  <param n="resthost" t="REST:RESTHost"/>
+  <script encoded="false"><![CDATA[var operationUrl = ("/csp/gateway/am/api/login?access_token");
+var requestType = "POST";
+var retrycount = 5;
+
+var body = {
+    "username": username,
+    "password": password,
+    "domain": "System Domain"
+};
+
+var requestContent = JSON.stringify(body);
+
+var requestContentType = "application/json";
+var request = resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+System.log(body);
+for (var i = 1; i < retrycount + 1; i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+var str = JSON.parse(response.contentAsString);
+var refresh_token = str.refresh_token;
+
+
+
+
+
+
+
+var operationUrl = ("/iaas/api/login");
+var requestType = "POST";
+var retrycount = 5;
+
+var body = {
+    "refreshToken": refresh_token
+};
+
+var requestContent = JSON.stringify(body);
+
+var requestContentType = "application/json";
+var request = resthost.createRequest(requestType, operationUrl, requestContent);
+request.contentType = requestContentType;
+System.log(body);
+for (var i = 1; i < retrycount + 1; i++) {
+    try {
+        response = request.execute();
+    } catch (e) {
+        System.error(e);
+        System.sleep(10000);
+        continue;
+    }
+    strresponse = response.contentAsString;
+    System.log("Response Status Code: " + response.statusCode);
+    System.log("Content As String: " + strresponse);
+    break;
+}
+
+var str = JSON.parse(response.contentAsString);
+var token = str.token;
+
+
+
+return token;]]></script>
+</dunes-script-module>

@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetAllZones" result-type="Array/VRA:_folder_Cloud_Zones" api-version="6.0.0" id="0285fbe4-9c88-4706-9c9e-36e62ed2603f" version="0.0.0" category-name="uno.vixen.vra">
+  <param n="host" t="VRA:Host"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[return VraEntitiesFinder.getCloudZones(host);]]></script>
+</dunes-script-module>

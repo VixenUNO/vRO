@@ -3,7 +3,7 @@
   <param n="token" t="string"><![CDATA[]]></param>
   <param n="att_resthost" t="REST:RESTHost"><![CDATA[]]></param>
   <param n="prefix" t="string"><![CDATA[]]></param>
-  <script encoded="false"><![CDATA[var operationUrl = ("/api/ipam/prefixes/?contains=" + prefix);
+  <script encoded="false"><![CDATA[var operationUrl = ("/api/ipam/prefixes/?prefix=" + prefix);
 var requestType = "GET";
 var body = {};
 var retrycount = 5;

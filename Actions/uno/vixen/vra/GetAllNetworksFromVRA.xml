@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="GetAllNetworksFromVRA" result-type="Array/VRA:FabricNetwork" api-version="6.0.0" id="1d54c10f-1ee0-4898-8358-2efd3a872625" version="0.0.0" category-name="uno.vixen.vra">
+  <param n="vrahost" t="VRA:Host"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[return VraEntitiesFinder.getFabricNetworks(vrahost);]]></script>
+</dunes-script-module>

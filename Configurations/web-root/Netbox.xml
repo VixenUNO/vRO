@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<config-element id="5055da52-08bc-4769-a047-06464b8c6f42" version="0.0.0">
+  <display-name><![CDATA[Netbox]]></display-name>
+  <atts>
+    <att name="restHost" type="REST:RESTHost" read-only="false">
+      <value encoded="n"><![CDATA[dunes://service.dunes.ch/CustomSDKObject?id='2485c7b0-dd17-4ed0-acee-c8f4952b1767'&dunesName='REST:RESTHost']]></value>
+    </att>
+    <att name="token" type="string" read-only="false">
+      <value encoded="n"><![CDATA[3f640c4329eda41ed4fc4a3a710bbe4d3655c716]]></value>
+    </att>
+  </atts>
+</config-element>
