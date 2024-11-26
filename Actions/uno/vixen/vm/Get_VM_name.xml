@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="Get_VM_name" result-type="string" api-version="6.0.0" id="509f7d04-2187-478e-8eb5-a9cba46cba8b" version="0.0.0" category-name="uno.vixen.vm">
+  <param n="vm" t="VC:VirtualMachine"/>
+  <script encoded="false"><![CDATA[var name = vm.name;
+
+System.log(name);
+
+
+return name;]]></script>
+</dunes-script-module>

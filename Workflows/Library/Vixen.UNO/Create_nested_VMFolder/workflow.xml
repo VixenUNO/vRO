@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="341e905e-8bb0-40e1-a56b-4b9ced2fc44b" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Create_nested_VMFolder</display-name>
+    <position y="50.0" x="100.0"/>
+    <input>
+        <param name="resourcePool" type="VC:ResourcePool"/>
+        <param name="vcenter" type="VC:SdkConnection"/>
+        <param name="folderName" type="string"/>
+    </input>
+    <output>
+        <param name="newFolder" type="VC:VmFolder"/>
+    </output>
+    <attrib name="parrentFolder" type="VC:VmFolder">
+        <value encoded="n"/>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="50.0" x="560.0"/>
+    </workflow-item>
+    <workflow-item name="item1" out-name="item2" type="task" script-module="uno.vixen.vm/Select_VMFolder_by_RPname" comparator="0">
+        <display-name>Select_VMFolder_by_RPname</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vm").Select_VMFolder_by_RPname(resourcePool,vcenter);
+</script>
+        <in-binding>
+            <bind name="resourcePool" type="VC:ResourcePool" export-name="resourcePool">
+                <description></description>
+            </bind>
+            <bind name="vcenter" type="VC:SdkConnection" export-name="vcenter">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="VC:VmFolder" export-name="parrentFolder"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="180.0"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item0" type="task" script-module="com.vmware.library.vc.folder/createFolder" comparator="0">
+        <display-name>createFolder</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("com.vmware.library.vc.folder").createFolder(parentFolder,name);
+</script>
+        <in-binding>
+            <bind name="parentFolder" type="VC:VmFolder" export-name="parrentFolder">
+                <description>The new folder's parent folder</description>
+            </bind>
+            <bind name="name" type="string" export-name="folderName">
+                <description>Name of the new folder</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="VC:VmFolder" export-name="newFolder"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="380.0"/>
+    </workflow-item>
+</ns2:workflow>

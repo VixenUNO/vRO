@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="bb9d2f02-ef3d-4549-8711-fe2605e922c8" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Get_VMs_IP_and_Network_in_ResoursePool</display-name>
+    <position y="50.0" x="100.0"/>
+    <input>
+        <param name="resourcePool" type="VC:ResourcePool"/>
+    </input>
+    <output>
+        <param name="result" type="Array/Array"/>
+    </output>
+    <attrib name="vms_in_rp" type="Array/VC:VirtualMachine">
+        <value encoded="n">[]</value>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="50.0" x="660.0"/>
+    </workflow-item>
+    <workflow-item name="item1" out-name="item0" type="task" script-module="uno.vixen.vm/Get_VMs_in_ResourcePool" comparator="0">
+        <display-name>Get_VMs_in_ResourcePool</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vm").Get_VMs_in_ResourcePool(resourcePool);
+</script>
+        <in-binding>
+            <bind name="resourcePool" type="VC:ResourcePool" export-name="resourcePool">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/VC:VirtualMachine" export-name="vms_in_rp"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="170.0"/>
+    </workflow-item>
+</ns2:workflow>

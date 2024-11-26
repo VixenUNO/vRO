@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="f1999c24-c32e-4298-95de-8a78698d2539" editor-version="2.0" version="0.0.0" api-version="6.0.0" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Get_VM_IP_and_Network</display-name>
+    <position y="50.0" x="100.0"/>
+    <input>
+        <param name="vm" type="VC:VirtualMachine"/>
+    </input>
+    <output>
+        <param name="result" type="Array/Array"/>
+    </output>
+    <attrib name="IP" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="Network" type="Array/string">
+        <value encoded="n"/>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="50.0" x="600.0"/>
+    </workflow-item>
+    <workflow-item name="item1" out-name="item2" type="task" script-module="uno.vixen.vm/Get_VM_IP" comparator="0">
+        <display-name>Get_VM_IP</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vm").Get_VM_IP(vm);
+</script>
+        <in-binding>
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/string" export-name="IP"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="160.0"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item3" type="task" script-module="uno.vixen.vm/Get_VM_Networks" comparator="0">
+        <display-name>Get_VM_Networks</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vm").Get_VM_Networks(vm);
+</script>
+        <in-binding>
+            <bind name="vm" type="VC:VirtualMachine" export-name="vm">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/string" export-name="Network"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="280.0"/>
+    </workflow-item>
+    <workflow-item name="item3" out-name="item0" type="task" comparator="0">
+        <display-name>ResultArray</display-name>
+        <script encoded="false"></script>
+        <in-binding>
+            <bind name="IP" type="Array/string" export-name="IP"/>
+            <bind name="Network" type="Array/string" export-name="Network"/>
+        </in-binding>
+        <out-binding>
+            <bind name="result" type="Array/Array" export-name="result"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="60.0" x="420.0"/>
+    </workflow-item>
+</ns2:workflow>

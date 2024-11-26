@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="Select_VMFolder_by_RPname" result-type="VC:VmFolder" api-version="6.0.0" id="009d0528-ab32-441c-886c-dbab57267f0b" version="0.0.0" category-name="uno.vixen.vm">
+  <param n="resourcePool" t="VC:ResourcePool"><![CDATA[]]></param>
+  <param n="vcenter" t="VC:SdkConnection"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var rpname = resourcePool.summary.name;
+
+System.log(rpname);
+
+if (rpname.indexOf('MGMT') >=0){
+    System.log('MGMT');
+    var folderName="MGMT";
+}
+
+if (rpname.indexOf('Services') >=0){
+    System.log('Services');
+    var folderName="Services";
+}
+
+if (rpname.indexOf('Public') >=0){
+    System.log('Public');
+    var folderName="Public";
+}
+
+var allFolders = Array();
+
+allFolders = vcenter.allVmFolders;
+
+for(i=0; i<allFolders.length; i++){
+    if(allFolders[i].name.indexOf(folderName) >= 0){
+        System.log(allFolders[i].name);
+        var folder = allFolders[i];
+    }
+};
+
+
+return folder;]]></script>
+</dunes-script-module>

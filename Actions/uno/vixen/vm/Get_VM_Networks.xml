@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="Get_VM_Networks" result-type="Array/string" api-version="6.0.0" id="ad1e8e5e-6472-4ba8-a1b6-94faf4f76a15" version="0.0.0" category-name="uno.vixen.vm">
+  <param n="vm" t="VC:VirtualMachine"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var ip = vm.guest.net;
+
+System.log(ip);
+
+var networks = new Array();
+
+for(i=0; i<ip.length; i++ ){
+	networks.push(ip[i].network);
+}
+
+return networks;]]></script>
+</dunes-script-module>

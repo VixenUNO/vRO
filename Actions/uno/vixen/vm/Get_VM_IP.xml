@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="Get_VM_IP" result-type="Array/string" api-version="6.0.0" id="c0b7bc5a-fa60-4f27-9e96-cae4e7ddc484" version="0.0.0" category-name="uno.vixen.vm">
+  <param n="vm" t="VC:VirtualMachine"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var ip = vm.guest.net;
+
+System.log(ip);
+
+var ipAddresses = new Array();
+
+for(i=0; i<ip.length; i++ ){
+	ipAddresses.push(ip[i].ipAddress[0]);
+}
+
+return ipAddresses;]]></script>
+</dunes-script-module>

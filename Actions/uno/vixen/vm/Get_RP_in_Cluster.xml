@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="Get_RP_in_Cluster" result-type="Array/VC:ResourcePool" api-version="6.0.0" id="d4dfb3c7-1864-48b3-a322-5b1dca555310" version="0.0.0" category-name="uno.vixen.vm">
+  <param n="Cluster" t="VC:ClusterComputeResource"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var result = new Array();
+
+var resourcePool = Cluster.resourcePool;
+
+getRPfromRP(resourcePool);
+return result;
+
+
+function getRPfromRP(rp) {
+	result = result.concat(rp.resourcePool);
+	for (var i in rp.resourcePool) {
+		getRPfromRP(rp.resourcePool[i]);
+	}
+}]]></script>
+</dunes-script-module>
