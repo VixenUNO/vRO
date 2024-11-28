@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dunes-script-module name="SendWebhook" result-type="Any" api-version="6.0.0" id="295b5f5b-5872-4ec1-b12c-56dabfe02117" version="0.0.0" category-name="uno.vixen.n8n">
+  <param n="restHost" t="REST:RESTHost"><![CDATA[]]></param>
+  <param n="webhookID" t="string"><![CDATA[]]></param>
+  <param n="body" t="string"/>
+  <script encoded="false"><![CDATA[var operationUrl = webhookID;
+var requestType = "POST";
+var requestContentType = "application/json";
+
+var requestContent = JSON.stringify(JSON.parse(body));
+
+System.log(requestContent);
+
+System.log("Host: " + restHost + ", operation: " + operationUrl + ", Request Type: " + requestType.name);
+
+var request = restHost.createRequest(requestType, operationUrl, requestContent, requestContentType);
+request.contentType = requestContentType;
+
+System.log("request: " + request.fullUrl);
+var response = request.execute();
+System.log("response: " + response.contentAsString);
+
+return response.contentAsString;]]></script>
+</dunes-script-module>

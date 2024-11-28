@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="4ecebfde-d0d8-45d1-bb4b-00e4ddc9f790" editor-version="2.0" version="0.0.0" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Check-if-VM-from-RP-exist-in-inventory_and_Send_Webhook</display-name>
+    <position y="50.0" x="100.0"/>
+    <input>
+        <param name="ResourcePool" type="VC:ResourcePool"/>
+        <param name="webhook_resthost" type="REST:RESTHost"/>
+        <param name="webhoocID" type="string"/>
+    </input>
+    <output>
+        <param name="webhook_result" type="string"/>
+    </output>
+    <attrib name="VMS_in_RP" type="Array/VC:VirtualMachine">
+        <value encoded="n">[]</value>
+    </attrib>
+    <attrib name="num" type="number">
+        <value encoded="n">0.0</value>
+    </attrib>
+    <attrib name="VM" type="VC:VirtualMachine">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="VM_name" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="Non_existing_vms_list" type="Array/string">
+        <value encoded="n">[8:string#0]</value>
+    </attrib>
+    <attrib name="list_id" type="number">
+        <value encoded="n">0.0</value>
+    </attrib>
+    <attrib name="exist" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="restHost" type="REST:RESTHost" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="restHost"/>
+    <attrib name="token" type="string" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="token"/>
+    <attrib name="jsonbody" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <workflow-item name="item1" out-name="item3" type="task" script-module="uno.vixen.vm/Get_VMs_in_ResourcePool" comparator="0">
+        <display-name>Get_VMs_in_ResourcePool</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vm").Get_VMs_in_ResourcePool(resourcePool);
+</script>
+        <in-binding>
+            <bind name="resourcePool" type="VC:ResourcePool" export-name="ResourcePool">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Array/VC:VirtualMachine" export-name="VMS_in_RP"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="170.0"/>
+    </workflow-item>
+    <workflow-item name="item2" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="220.0" x="160.0"/>
+    </workflow-item>
+    <workflow-item name="item3" out-name="item5" alt-out-name="item14" type="custom-condition" comparator="0">
+        <display-name>Decision</display-name>
+        <script encoded="false">if(num&lt;VMS_in_RP.length){
+    return true;
+}else{
+    return false;
+}</script>
+        <in-binding>
+            <bind name="num" type="number" export-name="num"/>
+            <bind name="VMS_in_RP" type="Array/VC:VirtualMachine" export-name="VMS_in_RP"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="50.0" x="380.0"/>
+    </workflow-item>
+    <workflow-item name="item5" out-name="item6" type="task" comparator="0">
+        <display-name>Choose VM</display-name>
+        <script encoded="false">VM = VMS_in_RP[num];</script>
+        <in-binding>
+            <bind name="VMS_in_RP" type="Array/VC:VirtualMachine" export-name="VMS_in_RP"/>
+            <bind name="num" type="number" export-name="num"/>
+        </in-binding>
+        <out-binding>
+            <bind name="VM" type="VC:VirtualMachine" export-name="VM"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="60.0" x="480.0"/>
+    </workflow-item>
+    <workflow-item name="item6" out-name="item7" type="task" script-module="uno.vixen.vm/Get_VM_name" comparator="0">
+        <display-name>Get_VM_name</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.vm").Get_VM_name(vm);
+</script>
+        <in-binding>
+            <bind name="vm" type="VC:VirtualMachine" export-name="VM">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="VM_name"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="600.0"/>
+    </workflow-item>
+    <workflow-item name="item7" out-name="item9" type="task" script-module="uno.vixen.netbox/Check_if_VM_exist" comparator="0">
+        <display-name>Check_if_VM_exist</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.netbox").Check_if_VM_exist(att_resthost,token,vmname);
+</script>
+        <in-binding>
+            <bind name="att_resthost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="token" type="string" export-name="token">
+                <description></description>
+            </bind>
+            <bind name="vmname" type="string" export-name="VM_name">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="exist"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="60.0" x="740.0"/>
+    </workflow-item>
+    <workflow-item name="item9" out-name="item10" alt-out-name="item12" type="custom-condition" comparator="0">
+        <display-name>VM_exist_in_inventory ??</display-name>
+        <script encoded="false">if(exist==0){
+    return false;
+}else{
+    return true;
+}</script>
+        <in-binding>
+            <bind name="exist" type="string" export-name="exist"/>
+        </in-binding>
+        <out-binding/>
+        <description>Custom decision based on a custom script.</description>
+        <position y="140.0" x="720.0"/>
+    </workflow-item>
+    <workflow-item name="item10" out-name="item3" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="num">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="num">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="130.0" x="540.0"/>
+    </workflow-item>
+    <workflow-item name="item11" out-name="item3" type="task" prototype-id="increase-counter" content-mode="x" comparator="0">
+        <display-name>Increase counter</display-name>
+        <script encoded="false">//Auto-generated script
+counter = counter + 1;</script>
+        <in-binding>
+            <bind name="counter" type="number" export-name="num">
+                <description>Item to increase</description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="counter" type="number" export-name="num">
+                <description>Increased item</description>
+            </bind>
+        </out-binding>
+        <description>Increment a counter by one.</description>
+        <position y="200.0" x="480.0"/>
+    </workflow-item>
+    <workflow-item name="item12" out-name="item11" type="task" comparator="0">
+        <display-name>Add to List</display-name>
+        <script encoded="false">Non_existing_vms_list[list_id]=VM_name;
+
+list_id = list_id + 1;
+
+</script>
+        <in-binding>
+            <bind name="list_id" type="number" export-name="list_id"/>
+            <bind name="Non_existing_vms_list" type="Array/string" export-name="Non_existing_vms_list"/>
+            <bind name="VM_name" type="string" export-name="VM_name"/>
+        </in-binding>
+        <out-binding>
+            <bind name="list_id" type="number" export-name="list_id"/>
+            <bind name="Non_existing_vms_list" type="Array/string" export-name="Non_existing_vms_list"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="220.0" x="620.0"/>
+    </workflow-item>
+    <workflow-item name="item13" out-name="item2" type="task" script-module="uno.vixen.n8n/SendWebhook" comparator="0">
+        <display-name>SendWebhook</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.n8n").SendWebhook(restHost,webhookID,body);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="webhook_resthost">
+                <description></description>
+            </bind>
+            <bind name="webhookID" type="string" export-name="webhoocID">
+                <description></description>
+            </bind>
+            <bind name="body" type="string" export-name="jsonbody">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="webhook_result"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="180.0" x="200.0"/>
+    </workflow-item>
+    <workflow-item name="item14" out-name="item13" type="task" comparator="0">
+        <display-name>Create JSON body</display-name>
+        <script encoded="false">jsonbody = '{ "TaskType": "Check if VM from ResourcePool exist in Netbox inventory", "VMs that does not exist": [';
+
+
+for(i=0; i &lt; Non_existing_vms_list.length; i++){
+    if(i==0){
+        jsonbody = jsonbody + '"' + Non_existing_vms_list[i] + '"';
+    }else{
+        jsonbody = jsonbody + ', "&lt;/br&gt;' + Non_existing_vms_list[i] + '"';
+    }
+}
+
+jsonbody = jsonbody + "]}"
+
+System.log(jsonbody);</script>
+        <in-binding>
+            <bind name="Non_existing_vms_list" type="Array/string" export-name="Non_existing_vms_list"/>
+        </in-binding>
+        <out-binding>
+            <bind name="jsonbody" type="string" export-name="jsonbody"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="130.0" x="280.0"/>
+    </workflow-item>
+</ns2:workflow>

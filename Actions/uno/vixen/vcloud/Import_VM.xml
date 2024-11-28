@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dunes-script-module name="Import_VM" result-type="string" api-version="6.0.0" id="2c57e86e-8d1d-46ee-931b-d0d9d819391c" version="0.0.0" category-name="uno.vixen.vcloud">
-  <param n="vimServer" t="vCloud:VimServer"/>
-  <script encoded="false"><![CDATA[test = vimServer.importVmIntoVApp]]></script>
+  <param n="vimServer" t="vCloud:VimServer"><![CDATA[]]></param>
+  <script encoded="false"><![CDATA[var test = vimServer.importVmIntoVApp;
+var temp = VclImportVmIntoExistingVAppParams;
+temp]]></script>
 </dunes-script-module>

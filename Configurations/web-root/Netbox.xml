@@ -3,7 +3,7 @@
   <display-name><![CDATA[Netbox]]></display-name>
   <atts>
     <att name="token" type="string" read-only="false">
-      <value encoded="n"><![CDATA[3f640c4329eda41ed4fc4a3a710bbe4d3655c716]]></value>
+      <value encoded="n"><![CDATA[95ec8628c04c38c5c5040427c99129a31da7a957]]></value>
     </att>
     <att name="restHost" type="REST:RESTHost" read-only="false">
       <value encoded="n"><![CDATA[dunes://service.dunes.ch/CustomSDKObject?id='7f8c5ace-6fd3-4fcf-a757-2013e165bbf3'&dunesName='REST:RESTHost']]></value>

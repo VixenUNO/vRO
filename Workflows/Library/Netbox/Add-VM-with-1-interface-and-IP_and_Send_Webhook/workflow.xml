@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:workflow xmlns:ns2="http://vmware.com/vco/workflow" root-name="item1" object-name="workflow:name=generic" id="494a3806-9fb4-4edf-b7c4-5c269d9a425a" editor-version="2.0" version="0.3.0" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Add-VM-with-1-interface-and-IP_and_Send_Webhook</display-name>
+    <position y="10.0" x="50.0"/>
+    <input>
+        <param name="VMName" type="string"/>
+        <param name="SiteName" type="string"/>
+        <param name="IPWithMask" type="string"/>
+        <param name="Role" type="string"/>
+        <param name="Cluster" type="string"/>
+        <param name="restHost" type="REST:RESTHost">
+            <description></description>
+        </param>
+        <param name="webhookID" type="string">
+            <description></description>
+        </param>
+    </input>
+    <output>
+        <param name="actionResult_1" type="Any"/>
+    </output>
+    <attrib name="att_resthost" type="REST:RESTHost" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="restHost"/>
+    <attrib name="token" type="string" conf-id="5055da52-08bc-4769-a047-06464b8c6f42" conf-key="token"/>
+    <attrib name="vmid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="interfaceid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="siteid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="interfacename" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="ipid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="roleid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="clusterid" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <attrib name="body" type="string">
+        <value encoded="n"></value>
+        <description></description>
+    </attrib>
+    <attrib name="actionResult" type="string">
+        <value encoded="n"></value>
+    </attrib>
+    <workflow-item name="item0" type="end" end-mode="0" comparator="0">
+        <in-binding/>
+        <out-binding/>
+        <position y="10.0" x="660.0"/>
+    </workflow-item>
+    <workflow-item name="item1" out-name="item3" type="link" linked-workflow-id="61908b01-68f6-4f96-bb77-c64737caa83a" comparator="0">
+        <display-name>Add-VM-with-1-interface-and-IP</display-name>
+        <script encoded="false"></script>
+        <in-binding>
+            <bind name="VMName" type="string" export-name="VMName"/>
+            <bind name="SiteName" type="string" export-name="SiteName"/>
+            <bind name="IPWithMask" type="string" export-name="IPWithMask"/>
+            <bind name="Role" type="string" export-name="Role"/>
+            <bind name="Cluster" type="string" export-name="Cluster"/>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+        </out-binding>
+        <description> </description>
+        <position y="20.0" x="160.0"/>
+    </workflow-item>
+    <workflow-item name="item2" out-name="item0" type="task" script-module="uno.vixen.n8n/SendWebhook" comparator="0">
+        <display-name>SendWebhook</display-name>
+        <script encoded="false">//Auto generated script, cannot be modified !
+actionResult = System.getModule("uno.vixen.n8n").SendWebhook(restHost,webhookID,body);
+</script>
+        <in-binding>
+            <bind name="restHost" type="REST:RESTHost" export-name="restHost">
+                <description></description>
+            </bind>
+            <bind name="webhookID" type="string" export-name="webhookID">
+                <description></description>
+            </bind>
+            <bind name="body" type="string" export-name="body">
+                <description></description>
+            </bind>
+        </in-binding>
+        <out-binding>
+            <bind name="actionResult" type="Any" export-name="actionResult_1"/>
+        </out-binding>
+        <description>Add a note to the workflow schema.</description>
+        <position y="20.0" x="480.0"/>
+    </workflow-item>
+    <workflow-item name="item3" out-name="item2" type="task" comparator="0">
+        <display-name>Format json body</display-name>
+        <script encoded="false">body = '{ "TaskType": "VM added to Netbox inventory", "VM specification": [';
+
+body = body + '"VM Name: ' + VMName + '", ';
+body = body + '"Site Name: ' + SiteName + '", ';
+body = body + '"Cluster Name: ' + Cluster + '", ';
+body = body + '"Role: ' + Role + '", ';
+body = body + '"IP: ' + IPWithMask + '", ';
+body = body + '"URL: https://netbox.sonfine.co/virtualization/virtual-machines/' + actionResult + '/"';
+
+
+body = body + "]}"
+
+System.log(body);</script>
+        <in-binding>
+            <bind name="actionResult" type="string" export-name="actionResult"/>
+            <bind name="Cluster" type="string" export-name="Cluster"/>
+            <bind name="IPWithMask" type="string" export-name="IPWithMask"/>
+            <bind name="Role" type="string" export-name="Role"/>
+            <bind name="SiteName" type="string" export-name="SiteName"/>
+            <bind name="VMName" type="string" export-name="VMName"/>
+        </in-binding>
+        <out-binding>
+            <bind name="body" type="string" export-name="body"/>
+        </out-binding>
+        <description>Simple task with custom script capability.</description>
+        <position y="20.0" x="320.0"/>
+    </workflow-item>
+</ns2:workflow>
